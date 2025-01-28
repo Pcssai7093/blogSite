@@ -1,0 +1,37 @@
+.toolBarWrapper {
+  display: flex;
+  justify-content: center;
+}
+.toolbar {
+  display: flex;
+  border: 0px solid red !important;
+  justify-content: center;
+  border-radius: 10px;
+  width: 80vw;
+  margin-top: 10px;
+}
+.formats {
+  display: flex !important; /* Enable flexbox layout */
+  flex-wrap: wrap; /* Allow items to wrap onto new lines */
+  gap: 5px;
+  justify-content: center !important;
+  align-items: center;
+}
+
+.toolIconWrapper {
+  background-color: white;
+  padding: 5px;
+  border-radius: 10%;
+  display: flex;
+  align-items: center;
+}
+.LongToolIconWrapper {
+  background-color: white;
+  padding: 5px;
+  border-radius: 4%;
+  /* height: 50px; */
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
