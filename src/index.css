@@ -7,7 +7,7 @@
 
   color-scheme: light dark;
   /* color: rgba(255, 255, 255, 0.87); */
-  background-color: #242424;
+  /* background-color: #242424; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -39,10 +39,25 @@
 .ql-editor .ql-font-lucida {
   font-family: var(--ql-font-lucida) !important;
 }
+.ql-container {
+  border: 0px !important;
+}
 
 .ql-editor {
-  min-height: 30vh;
+  min-height: 60vh;
   height: auto !important;
+  /* border: 0px transparent !important; */
   /* max-height: 80vh; */
-  overflow: hidden; /* Hides scrollbars, expands with content */
+  /* overflow: hidden; Hides scrollbars, expands with content */
+  box-shadow: 0px 0px 2px 0px black !important;
+  border-radius: 8px;
+}
+
+.ql-editor p img {
+  display: inline;
+  /* margin: auto; */
+}
+
+.MuiToolbar-root {
+  min-height: 48px !important;
 }
