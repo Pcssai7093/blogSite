@@ -27,23 +27,21 @@ const AddBlog = () => {
 
   return (
     <>
-      <label className={styles.label}>Editor Content</label>
-      <ToolBar />
-      <div className={styles.wrapper}>
-        <QuillEditor
-          theme="snow"
-          ref={quillRef}
-          className={styles.editor}
-          value={state.value}
-          onChange={handleChange}
-          //   placeholder={"Write something awesome..."}
-          modules={modules}
-          formats={formats}
-        />
+      <div className={styles.contentwrapper}>
+        <ToolBar />
+        <div className={styles.wrapper}>
+          <QuillEditor
+            theme="snow"
+            ref={quillRef}
+            className={styles.editor}
+            value={state.value}
+            onChange={handleChange}
+            //   placeholder={"Write something awesome..."}
+            modules={modules}
+            formats={formats}
+          />
+        </div>
       </div>
-      <button onClick={handler} className={styles.btn}>
-        Submit
-      </button>
     </>
   );
 };
