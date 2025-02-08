@@ -4,6 +4,9 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import AddBlog from "./pages/AddBlog/AddBlog";
 import Navbar from "./pages/Navbar/Navbar";
+import Hero from "./components/Hero/Hero";
+import HeroBlogSection from "./components/BlogSection/HeroBlogSection";
+import WorkCard from "./components/WorkSection/WorkSection";
 
 function App() {
   return (
@@ -11,9 +14,14 @@ function App() {
       <Navbar />
       {/* <Navbar /> */}
       {/* navbar will be out of router and the page content changes */}
-      <div>
+      {/* <div>
         <AddBlog />
-      </div>
+      </div> */}
+      <Hero />
+      <br />
+      {/* <BlogCard /> */}
+      <HeroBlogSection />
+      <WorkCard />
     </>
   );
 }
