@@ -16,7 +16,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
 const drawerWidth = 200;
-const navItems = ["Home", "About", "Contact"];
+const navItems = ["Work", "Blog"];
 
 function Navbar(props) {
   const { window } = props;
@@ -52,7 +52,7 @@ function Navbar(props) {
       <CssBaseline />
       <AppBar
         component="nav"
-        sx={{ position: "sticky", top: 0, bgcolor: "black" }}
+        sx={{ position: "sticky", top: 0, bgcolor: "white", boxShadow: "none" }}
       >
         <Toolbar>
           <IconButton
@@ -60,20 +60,42 @@ function Navbar(props) {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
+            sx={{ mr: 2, display: { sm: "none" }, color: "#2196F3" }}
           >
             <MenuIcon />
           </IconButton>
           <Typography
             variant="h6 small"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", sm: "block" },
+              fontWeight: 700,
+              background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
           >
-            Chandra Sekhar
+            {/* Chandra Sekhar */}
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: "#fff" }}>
+              <Button
+                key={item}
+                sx={{
+                  color: "#fff",
+                  textTransform: "none",
+                  fontWeight: 700,
+                  background:
+                    "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  transition: "transform 0.2s ease",
+                  "&:hover": {
+                    transform: "scale(2)",
+                  },
+                }}
+              >
                 {item}
               </Button>
             ))}
