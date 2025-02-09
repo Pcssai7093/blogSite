@@ -14,6 +14,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 200;
 const navItems = ["Work", "Blog"];
@@ -21,10 +22,22 @@ const navItems = ["Work", "Blog"];
 function Navbar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
+
+  function handleNavButtonClick(e) {
+    let buttonText = e.target.textContent.toLowerCase();
+    console.log(buttonText);
+    if (buttonText == "work") {
+      console.log("in work");
+      navigate("/work");
+    } else if (buttonText == "blog") {
+      navigate("/blog");
+    }
+  }
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
@@ -82,6 +95,7 @@ function Navbar(props) {
             {navItems.map((item) => (
               <Button
                 key={item}
+                onClick={handleNavButtonClick}
                 sx={{
                   color: "#fff",
                   textTransform: "none",
