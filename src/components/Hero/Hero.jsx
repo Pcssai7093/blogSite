@@ -110,7 +110,18 @@ const Hero = () => {
                 text={["Chandra Sekhar"]}
                 speed={100}
                 eraseDelay={3000}
-                cursor="|"
+                cursor={
+                  <span
+                    style={{
+                      background:
+                        "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                  >
+                    |
+                  </span>
+                }
               />
             </Typography>
             <Typography
