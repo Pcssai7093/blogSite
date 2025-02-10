@@ -77,7 +77,6 @@ const BlogPage = () => {
               background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
-              transition: "transform 0.3s ease",
               "&:hover": {
                 transform: "scale(1.5)",
               },
