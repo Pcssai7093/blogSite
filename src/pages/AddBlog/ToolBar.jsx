@@ -84,147 +84,152 @@ export const formats = [
 ];
 
 // Quill Toolbar component
-export const ToolBar = () => (
-  <div className={styles.toolBarWrapper}>
-    <div className={styles.toolbar} id="toolbar">
-      <div className={`ql-formats ${styles.formats}`}>
-        <div className={styles.LongToolIconWrapper}>
-          <select
-            className={`ql-font ${styles.boldLongIcon}`}
-            defaultValue="arial"
-          >
-            <option value="arial">Arial</option>
-            <option value="comic-sans">Comic Sans</option>
-            <option value="courier-new">Courier New</option>
-            <option value="georgia">Georgia</option>
-            <option value="helvetica">Helvetica</option>
-            <option value="lucida">Lucida</option>
-          </select>
-        </div>
+export const ToolBar = () => {
+  // useEffect(() => {
+  //   document.dispatchEvent(new Event("DOMContentLoaded")); // Force Quill to re-render
+  // }, []);
+  return (
+    <div className={styles.toolBarWrapper}>
+      <div className={styles.toolbar} id="toolbar">
+        <div className={`ql-formats ${styles.formats}`}>
+          <div className={styles.LongToolIconWrapper}>
+            <select
+              className={`ql-font ${styles.boldLongIcon}`}
+              defaultValue="arial"
+            >
+              <option value="arial">Arial</option>
+              <option value="comic-sans">Comic Sans</option>
+              <option value="courier-new">Courier New</option>
+              <option value="georgia">Georgia</option>
+              <option value="helvetica">Helvetica</option>
+              <option value="lucida">Lucida</option>
+            </select>
+          </div>
 
-        <div className={styles.LongToolIconWrapper}>
-          <select
-            className={`ql-size ${styles.boldLongIcon}`}
-            defaultValue="medium"
-          >
-            <option value="extra-small">Size 1</option>
-            <option value="small">Size 2</option>
-            <option value="medium">Size 3</option>
-            <option value="large">Size 4</option>
-          </select>
-        </div>
+          <div className={styles.LongToolIconWrapper}>
+            <select
+              className={`ql-size ${styles.boldLongIcon}`}
+              defaultValue="medium"
+            >
+              <option value="extra-small">Size 1</option>
+              <option value="small">Size 2</option>
+              <option value="medium">Size 3</option>
+              <option value="large">Size 4</option>
+            </select>
+          </div>
 
-        <div className={styles.LongToolIconWrapper}>
-          <select
-            className={`ql-header ${styles.boldLongIcon}`}
-            defaultValue="3"
-          >
-            <option value="1">Heading</option>
-            <option value="2">Subheading</option>
-            <option value="3">Normal</option>
-          </select>
-        </div>
+          <div className={styles.LongToolIconWrapper}>
+            <select
+              className={`ql-header ${styles.boldLongIcon}`}
+              defaultValue="3"
+            >
+              <option value="1">Heading</option>
+              <option value="2">Subheading</option>
+              <option value="3">Normal</option>
+            </select>
+          </div>
 
-        <div className={styles.toolIconWrapper}>
-          <button className={`ql-bold ${styles.boldIcon}`}></button>
-        </div>
+          <div className={styles.toolIconWrapper}>
+            <button className={`ql-bold ${styles.boldIcon}`}></button>
+          </div>
 
-        <div className={styles.toolIconWrapper}>
-          <button className={`ql-italic ${styles.boldIcon}`}></button>
-        </div>
+          <div className={styles.toolIconWrapper}>
+            <button className={`ql-italic ${styles.boldIcon}`}></button>
+          </div>
 
-        <div className={styles.toolIconWrapper}>
-          <button className={`ql-underline ${styles.boldIcon}`}></button>
-        </div>
+          <div className={styles.toolIconWrapper}>
+            <button className={`ql-underline ${styles.boldIcon}`}></button>
+          </div>
 
-        <div className={styles.toolIconWrapper}>
-          <button className={`ql-strike ${styles.boldIcon}`}></button>
-        </div>
+          <div className={styles.toolIconWrapper}>
+            <button className={`ql-strike ${styles.boldIcon}`}></button>
+          </div>
 
-        <div className={styles.toolIconWrapper}>
-          <button
-            className={`ql-list ${styles.boldIcon}`}
-            value="ordered"
-          ></button>
-        </div>
+          <div className={styles.toolIconWrapper}>
+            <button
+              className={`ql-list ${styles.boldIcon}`}
+              value="ordered"
+            ></button>
+          </div>
 
-        <div className={styles.toolIconWrapper}>
-          <button
-            className={`ql-list ${styles.boldIcon}`}
-            value="bullet"
-          ></button>
-        </div>
+          <div className={styles.toolIconWrapper}>
+            <button
+              className={`ql-list ${styles.boldIcon}`}
+              value="bullet"
+            ></button>
+          </div>
 
-        <div className={styles.toolIconWrapper}>
-          <button
-            className={`ql-indent ${styles.boldIcon}`}
-            value="-1"
-          ></button>
-        </div>
+          <div className={styles.toolIconWrapper}>
+            <button
+              className={`ql-indent ${styles.boldIcon}`}
+              value="-1"
+            ></button>
+          </div>
 
-        <div className={styles.toolIconWrapper}>
-          <button
-            className={`ql-indent ${styles.boldIcon}`}
-            value="+1"
-          ></button>
-        </div>
+          <div className={styles.toolIconWrapper}>
+            <button
+              className={`ql-indent ${styles.boldIcon}`}
+              value="+1"
+            ></button>
+          </div>
 
-        <div className={styles.toolIconWrapper}>
-          <button
-            className={`ql-script ${styles.boldIcon}`}
-            value="super"
-          ></button>
-        </div>
+          <div className={styles.toolIconWrapper}>
+            <button
+              className={`ql-script ${styles.boldIcon}`}
+              value="super"
+            ></button>
+          </div>
 
-        <div className={styles.toolIconWrapper}>
-          <button
-            className={`ql-script ${styles.boldIcon}`}
-            value="sub"
-          ></button>
-        </div>
+          <div className={styles.toolIconWrapper}>
+            <button
+              className={`ql-script ${styles.boldIcon}`}
+              value="sub"
+            ></button>
+          </div>
 
-        <div className={styles.toolIconWrapper}>
-          <button className={`ql-blockquote ${styles.boldIcon}`}></button>
-        </div>
+          <div className={styles.toolIconWrapper}>
+            <button className={`ql-blockquote ${styles.boldIcon}`}></button>
+          </div>
 
-        <div className={styles.toolIconWrapper}>
-          <select className={`ql-align ${styles.boldIcon}`}></select>
-        </div>
+          <div className={styles.toolIconWrapper}>
+            <select className={`ql-align ${styles.boldIcon}`}></select>
+          </div>
 
-        <div className={styles.toolIconWrapper}>
-          <select className={`ql-color ${styles.boldIcon}`}></select>
-        </div>
+          <div className={styles.toolIconWrapper}>
+            <select className={`ql-color ${styles.boldIcon}`}></select>
+          </div>
 
-        <div className={styles.toolIconWrapper}>
-          <select className={`ql-background ${styles.boldIcon}`}></select>
-        </div>
+          <div className={styles.toolIconWrapper}>
+            <select className={`ql-background ${styles.boldIcon}`}></select>
+          </div>
 
-        <div className={styles.toolIconWrapper}>
-          <button className={`ql-link ${styles.boldIcon}`}></button>
-        </div>
+          <div className={styles.toolIconWrapper}>
+            <button className={`ql-link ${styles.boldIcon}`}></button>
+          </div>
 
-        <div className={styles.toolIconWrapper}>
-          <button className={`ql-image ${styles.boldIcon}`}></button>
-        </div>
+          <div className={styles.toolIconWrapper}>
+            <button className={`ql-image ${styles.boldIcon}`}></button>
+          </div>
 
-        <div className={styles.toolIconWrapper}>
-          <button className={`ql-video ${styles.boldIcon}`}></button>
-        </div>
+          <div className={styles.toolIconWrapper}>
+            <button className={`ql-video ${styles.boldIcon}`}></button>
+          </div>
 
-        <div className={styles.toolIconWrapper}>
-          <button className={`ql-formula ${styles.boldIcon}`}></button>
-        </div>
+          <div className={styles.toolIconWrapper}>
+            <button className={`ql-formula ${styles.boldIcon}`}></button>
+          </div>
 
-        <div className={styles.toolIconWrapper}>
-          <button className={`ql-code-block ${styles.boldIcon}`}></button>
-        </div>
+          <div className={styles.toolIconWrapper}>
+            <button className={`ql-code-block ${styles.boldIcon}`}></button>
+          </div>
 
-        <div className={styles.toolIconWrapper}>
-          <button className={`ql-clean ${styles.boldIcon}`}></button>
+          <div className={styles.toolIconWrapper}>
+            <button className={`ql-clean ${styles.boldIcon}`}></button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default ToolBar;

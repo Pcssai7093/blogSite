@@ -9,6 +9,7 @@ import HeroBlogSection from "./components/BlogSection/HeroBlogSection";
 import WorkCard from "./components/WorkSection/WorkSection";
 import { Routes, BrowserRouter, Route } from "react-router-dom";
 import BlogPage from "./components/BlogSection/BlogPage";
+import ViewBlog from "./pages/ViewBlog/ViewBlog";
 
 function App() {
   return (
@@ -41,6 +42,14 @@ function App() {
             element={
               <>
                 <AddBlog />
+              </>
+            }
+          />
+          <Route
+            path="/blog/:bId"
+            element={
+              <>
+                <ViewBlog />
               </>
             }
           />

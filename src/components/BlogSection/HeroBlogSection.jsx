@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Grid,
@@ -14,6 +14,19 @@ import { FaEye } from "react-icons/fa";
 import PropTypes from "prop-types";
 import { Slide } from "react-awesome-reveal";
 import { motion } from "framer-motion";
+import { IconButton } from "@mui/material";
+import LinkIcon from "@mui/icons-material/Link";
+import { useNavigate } from "react-router-dom";
+import fireDb from "../../firebaseInit";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  doc,
+  orderBy,
+  limit,
+  query,
+} from "firebase/firestore";
 
 const CategoryContainer = styled(Box)({
   display: "flex",
@@ -53,6 +66,29 @@ const workExperiences = [
 
 const HeroBlogSection = () => {
   const chipColors = ["primary", "secondary", "success"];
+  const navigate = useNavigate();
+  const [heroBlogs, setHeroBlogs] = useState([]);
+
+  useEffect(() => {
+    const q = query(
+      collection(fireDb, "blogs"),
+      orderBy("createdAt", "desc"),
+      limit(2)
+    );
+
+    getDocs(q)
+      .then((res) => {
+        const blogData = res.docs.map((doc) => ({
+          id: doc.id, // Firestore document ID
+          ...doc.data(), // Spread document data
+        }));
+        console.log(blogData);
+        setHeroBlogs(blogData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <Container maxWidth="md" sx={{ py: 4 }}>
@@ -107,71 +143,84 @@ const HeroBlogSection = () => {
         ))}
       </Typography>
       <Grid container spacing={3}>
-        {workExperiences.map((work, index) => (
-          <Grid item key={index} xs={12} sm={6} md={4}>
-            <Slide>
-              <motion.div
-                animate={{
-                  x: [0, 5, -5, 3, -3, 0], // Smooth left-right movement
-                  y: [0, -3, 3, -4, 4, 0], // Smooth up-down movement
-                  rotate: [0, 2, -2, 1.5, -1.5, 0], // Slight rotation for a wavy effect// Small rotations
-                }}
-                transition={{
-                  duration: 3, // Speed of movement
-                  repeat: Infinity, // Infinite loop
-                  repeatType: "mirror",
-                  ease: "easeInOut",
-                }}
-              >
-                <Card
-                  variant="outlined"
-                  sx={{
-                    height: "100%",
-                    transition: "transform 0.2s ease",
-                    "&:hover": {
-                      transform: "scale(1.05)",
-                    },
+        {heroBlogs &&
+          heroBlogs.map((work, index) => (
+            <Grid item key={index} xs={12} sm={6} md={4}>
+              <Slide>
+                <motion.div
+                  animate={{
+                    x: [0, 5, -5, 3, -3, 0], // Smooth left-right movement
+                    y: [0, -3, 3, -4, 4, 0], // Smooth up-down movement
+                    rotate: [0, 2, -2, 1.5, -1.5, 0], // Slight rotation for a wavy effect// Small rotations
+                  }}
+                  transition={{
+                    duration: 3, // Speed of movement
+                    repeat: Infinity, // Infinite loop
+                    repeatType: "mirror",
+                    ease: "easeInOut",
                   }}
                 >
-                  <CategoryContainer
+                  <Card
+                    variant="outlined"
                     sx={{
-                      display: "flex",
-                      flexDirection: "row-reverse",
-                      alignItems: "start",
-                      minHeight: "100px",
+                      height: "100%",
+                      transition: "transform 0.2s ease",
+                      "&:hover": {
+                        transform: "scale(1.05)",
+                      },
                     }}
                   >
-                    {work.categories.map((category, index) => (
-                      <CategoryButton
-                        key={category}
-                        variant="outlined"
-                        size="small"
-                        sx={{ fontSize: "0.6rem" }}
-                        color={chipColors[index % 3]}
-                      >
-                        {category}
-                      </CategoryButton>
-                    ))}
-                  </CategoryContainer>
-                  <CardContent>
-                    <Typography variant="h6" component="div">
-                      {work.title}
-                    </Typography>
-                    <Typography color="textSecondary">
-                      {work.company}
-                    </Typography>
-                    <Box mt={1} mb={2}>
-                      <Typography variant="body2" color="textSecondary">
-                        {work.date}
+                    <IconButton
+                      onClick={() => navigate(`/blog/${work.id}`)}
+                      aria-label="View Blog"
+                    >
+                      <LinkIcon />
+                    </IconButton>
+                    <CategoryContainer
+                      sx={{
+                        display: "flex",
+                        flexDirection: "row-reverse",
+                        alignItems: "start",
+                        // minHeight: "100px",
+                      }}
+                    >
+                      {work.BlogCategories.map((category, index) => (
+                        <CategoryButton
+                          key={category}
+                          variant="outlined"
+                          size="small"
+                          sx={{ fontSize: "0.6rem" }}
+                          color={chipColors[index % 3]}
+                        >
+                          {category}
+                        </CategoryButton>
+                      ))}
+                    </CategoryContainer>
+                    <CardContent>
+                      <Typography variant="h6" component="div">
+                        {work.BlogTitle}
                       </Typography>
-                    </Box>
-                    <Typography variant="body2">{work.description}</Typography>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </Slide>
-          </Grid>
-        ))}
+                      <Typography variant="body2" component="div">
+                        {work.createdAt}
+                      </Typography>
+                      <Typography color="textSecondary">
+                        {work.company}
+                      </Typography>
+                      <Box mt={1} mb={2}>
+                        <Typography variant="body2" color="textSecondary">
+                          {work.date}
+                        </Typography>
+                      </Box>
+                      <Typography variant="body2">
+                        {(work.BlogContent.match(/<p>(.*?)<\/p>/) || [])[1] ||
+                          ""}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </Slide>
+            </Grid>
+          ))}
       </Grid>
     </Container>
   );
