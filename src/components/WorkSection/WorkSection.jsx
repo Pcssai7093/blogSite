@@ -33,7 +33,7 @@ const WorkCard = () => {
         gutterBottom
         sx={{
           fontWeight: 700,
-          background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+          background: "linear-gradient(45deg, #ffffff 30%, #f0f0f0 90%)",
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
         }}
@@ -46,7 +46,7 @@ const WorkCard = () => {
               display: "inline-flex",
               transition: "transform 0.3s ease",
               willChange: "transform", // Helps with rendering
-              background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+              background: "linear-gradient(45deg, #ffffff 30%, #f0f0f0 90%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               "&:hover": {
@@ -66,7 +66,7 @@ const WorkCard = () => {
               display: "inline-flex",
               transition: "transform 0.3s ease",
               willChange: "transform", // Helps with rendering
-              background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+              background: "linear-gradient(45deg, #ffffff 30%, #f0f0f0 90%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               "&:hover": {

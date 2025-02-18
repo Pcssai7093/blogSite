@@ -15,6 +15,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const drawerWidth = 200;
 const navItems = ["Work", "Blog"];
@@ -65,7 +66,12 @@ function Navbar(props) {
       <CssBaseline />
       <AppBar
         component="nav"
-        sx={{ position: "sticky", top: 0, bgcolor: "white", boxShadow: "none" }}
+        sx={{
+          position: "sticky",
+          top: 0,
+          bgcolor: "transparent",
+          boxShadow: "none",
+        }}
       >
         <Toolbar>
           <IconButton
@@ -93,25 +99,38 @@ function Navbar(props) {
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
-              <Button
-                key={item}
-                onClick={handleNavButtonClick}
-                sx={{
-                  color: "#fff",
-                  textTransform: "none",
-                  fontWeight: 700,
-                  background:
-                    "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  transition: "transform 0.2s ease",
-                  "&:hover": {
-                    transform: "scale(2)",
-                  },
+              <motion.div
+                animate={{
+                  scale: [1, 1.5, 1], // Zoom in to 1.2x, then back to normal
                 }}
+                transition={{
+                  duration: 1 + Math.random() * 0.5, // Speed of zoom in/out
+                  repeat: Infinity, // Infinite loop
+                  repeatType: "reverse", // Smoothly zoom in & out
+                  ease: "easeInOut",
+                }}
+                style={{ display: "inline-block" }}
               >
-                {item}
-              </Button>
+                <Button
+                  key={item}
+                  onClick={handleNavButtonClick}
+                  sx={{
+                    color: "#fff",
+                    textTransform: "none",
+                    fontWeight: 700,
+                    background:
+                      "linear-gradient(45deg, #ffffff 30%, #f0f0f0 90%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    transition: "transform 0.2s ease",
+                    "&:hover": {
+                      transform: "scale(2)",
+                    },
+                  }}
+                >
+                  {item}
+                </Button>
+              </motion.div>
             ))}
           </Box>
         </Toolbar>

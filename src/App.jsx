@@ -10,10 +10,21 @@ import WorkCard from "./components/WorkSection/WorkSection";
 import { Routes, BrowserRouter, Route } from "react-router-dom";
 import BlogPage from "./components/BlogSection/BlogPage";
 import ViewBlog from "./pages/ViewBlog/ViewBlog";
+import { Box } from "@mui/material";
 
 function App() {
   return (
-    <>
+    <Box
+      sx={{
+        backgroundImage: "url('../../src/assets/2.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat", // Ensures the background doesn’t repeat
+        minHeight: "100vh",
+        width: "100%",
+        backgroundAttachment: "fixed",
+      }}
+    >
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -61,7 +72,7 @@ function App() {
       {/* <div>
         <AddBlog />
       </div> */}
-    </>
+    </Box>
   );
 }
 

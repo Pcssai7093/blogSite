@@ -90,7 +90,9 @@ const ViewBlog = () => {
                 alignItems: "start",
               }}
             >
-              <Typography variant="h3">{title}</Typography>
+              <Typography variant="h3" sx={{ color: "white" }}>
+                {title}
+              </Typography>
               <Typography variant="caption">{blogDate}</Typography>
               <CategoryContainer
                 sx={{

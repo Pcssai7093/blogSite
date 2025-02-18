@@ -68,18 +68,35 @@ const Hero = () => {
             order: { xs: 1, md: 2 },
           }}
         >
-          <Box
-            component={motion.div}
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
+          <motion.div
+            animate={{
+              // Circular jiggle along x and y axes
+              x: [0, 5, 0, -5, 0], // Horizontal movement
+              y: [0, -5, 0, 5, 0], // Vertical movement
+
+              // Zoom In & Zoom Out
+              scale: [1, 1.1, 1], // Zoom in to 1.5x, then back to normal
+            }}
+            transition={{
+              duration: 2, // Controls the speed of the movement
+              repeat: Infinity, // Infinite loop
+              repeatType: "loop", // Loop the animation
+              ease: "easeInOut", // Smooth transition
+            }}
           >
-            <StyledAvatar
-              alt="John Doe Profile Picture"
-              src="https://images.unsplash.com/photo-1599566150163-29194dcaad36"
-              loading="lazy"
-            />
-          </Box>
+            <Box
+              component={motion.div}
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+            >
+              <StyledAvatar
+                alt="John Doe Profile Picture"
+                src="https://images.unsplash.com/photo-1599566150163-29194dcaad36"
+                loading="lazy"
+              />
+            </Box>
+          </motion.div>
         </Grid>
         <Grid
           item
@@ -101,7 +118,7 @@ const Hero = () => {
               gutterBottom
               sx={{
                 fontWeight: 700,
-                background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+                background: "linear-gradient(45deg, #ffffff 30%, #f0f0f0 90%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
               }}
@@ -114,7 +131,7 @@ const Hero = () => {
                   <span
                     style={{
                       background:
-                        "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+                        "linear-gradient(45deg, #ffffff 30%, #f0f0f0 90%)",
                       WebkitBackgroundClip: "text",
                       WebkitTextFillColor: "transparent",
                     }}
