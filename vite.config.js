@@ -6,7 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   base: "/blogSite/", // 👈 Set this to match your repo name
-  build: {
-    outDir: "dist", // Ensures Vite builds to dist/
-  },
+  // build: {
+  //   outDir: "dist", // Ensures Vite builds to dist/
+  // },
 });

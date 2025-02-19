@@ -230,7 +230,7 @@ const HeroBlogSection = () => {
                       }}
                     >
                       <IconButton
-                        onClick={() => navigate(`/blog/${work.id}`)}
+                        onClick={() => navigate(`/blogSite/blog/${work.id}`)}
                         aria-label="View Blog"
                       >
                         <LinkIcon />

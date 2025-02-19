@@ -25,7 +25,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Box
         sx={{
-          backgroundImage: "url('../../src/assets/2.png')",
+          backgroundImage: "url('../../blogSite/src/assets/2.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat", // Ensures the background doesn’t repeat
@@ -39,7 +39,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route
-              path="/work"
+              path="/blogSite/work"
               element={
                 <>
                   <Hero />
@@ -51,7 +51,7 @@ function App() {
               }
             />
             <Route
-              path="/blog"
+              path="/blogSite/blog"
               element={
                 <>
                   <BlogPage />
@@ -59,7 +59,7 @@ function App() {
               }
             />
             <Route
-              path="/add-blog"
+              path="/blogSite/add-blog"
               element={
                 <>
                   <AddBlog />
@@ -67,7 +67,7 @@ function App() {
               }
             />
             <Route
-              path="/blog/:bId"
+              path="/blogSite/blog/:bId"
               element={
                 <>
                   <ViewBlog />

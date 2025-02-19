@@ -34,9 +34,9 @@ function Navbar(props) {
     console.log(buttonText);
     if (buttonText == "work") {
       console.log("in work");
-      navigate("/work");
+      navigate("/blogSite/work");
     } else if (buttonText == "blog") {
-      navigate("/blog");
+      navigate("/blogSite/blog");
     }
   }
 
