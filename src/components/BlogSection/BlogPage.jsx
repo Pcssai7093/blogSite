@@ -32,16 +32,50 @@ const CategoryContainer = styled(Box)({
   display: "flex",
   gap: 8,
   flexWrap: "wrap",
-  marginTop: 16,
+  // marginTop: 16,
   padding: "0 16px 16px 16px",
 });
 
-const CategoryButton = styled(Button)({
-  borderRadius: 50,
+const CategoryButton = styled(Button)(({ theme, bgColor }) => ({
+  borderRadius: 20, // More rounded but not a full pill shape
   textTransform: "none",
-  padding: "4px 16px",
-  minWidth: "unset",
-});
+  padding: "6px 18px",
+  // minWidth: "unset",
+  fontWeight: "bold",
+  fontFamily: "'Comic Sans MS', 'Fredoka One', cursive", // Playful font
+  fontSize: "0.75rem",
+  background: bgColor, // Warm cartoonish color
+  color: "#fff",
+  border: `2px solid white`,
+  boxShadow: `4px 4px 0px ${bgColor}`, // Cartoon pop-out effect
+  transition: "transform 0.2s ease, box-shadow 0.2s ease",
+  "&:hover": {
+    transform: "translateY(-2px)",
+    boxShadow: `6px 6px 0px white`,
+  },
+  "&:active": {
+    transform: "translateY(2px)",
+    boxShadow: `2px 2px 0px ${bgColor}`,
+  },
+}));
+
+const CartoonCard = styled(Card)(({ theme }) => ({
+  // borderRadius: 7,
+  // background: "linear-gradient(145deg, #ffea00, #ffcc00)",
+  // boxShadow: "8px 8px 0px #21A3F3",
+  // border: "2px solid #21A3F3",
+  padding: "16px",
+  fontFamily: "'Comic Sans MS', 'Fredoka One', cursive",
+  transition: "transform 0.2s ease, box-shadow 0.2s ease",
+  "&:hover": {
+    transform: "translateY(-4px)",
+    boxShadow: "8px 8px 0px #21A3F3",
+  },
+
+  background: "rgba(255, 255, 255, 0.6)", // Semi-transparent white
+  backdropFilter: "blur(10px)", // Blur effect for glassy look
+  WebkitBackdropFilter: "blur(10px)",
+}));
 
 const workExperiences = [
   {
@@ -65,7 +99,18 @@ const workExperiences = [
 ];
 
 const BlogPage = () => {
-  const chipColors = ["primary", "secondary", "success"];
+  const chipColors = [
+    "#28A745", // Dark Green
+    "#D32F2F", // Strong Red
+    "#6A1B9A", // Deep Purple
+    "#FFAA00", // Deep Orange-Yellow
+    "#007ACC", // Bright Blue
+    "#FF5722", // Vivid Orange
+    "#00897B", // Teal Green
+    "#1976D2", // Dark Blue
+    "#C2185B", // Dark Pink
+    "#795548", // Warm Brown
+  ];
   const navigate = useNavigate();
   const [heroBlogs, setHeroBlogs] = useState([]);
   useEffect(() => {
@@ -86,9 +131,9 @@ const BlogPage = () => {
   }, []);
 
   return (
-    <Container maxWidth="md" sx={{ py: 4 }}>
+    <Container maxWidth="md" sx={{ py: 1 }}>
       <Typography
-        variant="h4"
+        variant="h3"
         gutterBottom
         sx={{
           fontWeight: 700,
@@ -105,9 +150,10 @@ const BlogPage = () => {
               display: "inline-flex",
               transition: "transform 0.3s ease",
               willChange: "transform", // Helps with rendering
-              background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+              background: "linear-gradient(45deg, #ffffff 30%, #f0f0f0 90%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
+              WebkitTextStroke: "0.5px black",
               "&:hover": {
                 transform: "scale(1.5)",
               },
@@ -121,7 +167,7 @@ const BlogPage = () => {
       <Grid container spacing={3}>
         {heroBlogs &&
           heroBlogs.map((work, index) => (
-            <Grid item key={index} xs={12} sm={6} md={4}>
+            <Grid item key={index} xs={12} sm={6} md={6}>
               <Slide>
                 <motion.div
                 // animate={{
@@ -136,63 +182,71 @@ const BlogPage = () => {
                 //   ease: "easeInOut",
                 // }}
                 >
-                  <Card
-                    variant="outlined"
-                    sx={{
-                      height: "100%",
-                      transition: "transform 0.2s ease",
-                      "&:hover": {
-                        transform: "scale(1.05)",
-                      },
-                    }}
-                  >
-                    <IconButton
-                      onClick={() => navigate(`/blog/${work.id}`)}
-                      aria-label="View Blog"
-                    >
-                      <LinkIcon />
-                    </IconButton>
-                    <CategoryContainer
+                  <CartoonCard>
+                    <Card
+                      variant="outlined"
                       sx={{
-                        display: "flex",
-                        flexDirection: "row-reverse",
-                        alignItems: "start",
-                        // minHeight: "100px",
+                        height: "100%",
+                        transition: "transform 0.2s ease",
+                        "&:hover": {
+                          transform: "scale(1.05)",
+                        },
+                        backgroundColor: "transparent",
+                        border: "none",
+                        boxShadow: "none",
                       }}
                     >
-                      {work.BlogCategories.map((category, index) => (
-                        <CategoryButton
-                          key={category}
-                          variant="outlined"
-                          size="small"
-                          sx={{ fontSize: "0.6rem" }}
-                          color={chipColors[index % 3]}
-                        >
-                          {category}
-                        </CategoryButton>
-                      ))}
-                    </CategoryContainer>
-                    <CardContent>
-                      <Typography variant="h6" component="div">
-                        {work.BlogTitle}
-                      </Typography>
-                      <Typography variant="body2" component="div">
-                        {work.createdAt}
-                      </Typography>
-                      <Typography color="textSecondary">
-                        {work.company}
-                      </Typography>
-                      <Box mt={1} mb={2}>
-                        <Typography variant="body2" color="textSecondary">
-                          {work.date}
+                      <IconButton
+                        onClick={() => navigate(`/blog/${work.id}`)}
+                        aria-label="View Blog"
+                      >
+                        <LinkIcon />
+                      </IconButton>
+                      <CategoryContainer
+                        sx={{
+                          display: "flex",
+                          flexDirection: "row-reverse",
+                          alignItems: "start",
+                          // minHeight: "100px",
+                        }}
+                      >
+                        {work.BlogCategories.map((category, index) => (
+                          <CategoryButton
+                            key={category}
+                            variant="outlined"
+                            size="small"
+                            sx={{ fontSize: "0.6rem" }}
+                            color={chipColors[index % 3]}
+                            bgColor={chipColors[index % 3]}
+                          >
+                            {category}
+                          </CategoryButton>
+                        ))}
+                      </CategoryContainer>
+                      <CardContent>
+                        <Typography variant="h6" component="div">
+                          {work.BlogTitle}
                         </Typography>
-                      </Box>
-                      <Typography variant="body2">
-                        {(work.BlogContent.match(/<p>(.*?)<\/p>/) || [])[1] ||
-                          ""}
-                      </Typography>
-                    </CardContent>
-                  </Card>
+                        <Typography variant="body2" component="div">
+                          {work.createdAt}
+                        </Typography>
+                        <Typography color="textSecondary">
+                          {work.company}
+                        </Typography>
+                        <Box mt={1} mb={2}>
+                          <Typography variant="body2" color="textSecondary">
+                            {work.date}
+                          </Typography>
+                        </Box>
+                        <Typography variant="body2">
+                          {(work.BlogContent.match(/<p>(.*?)<\/p>/) || [])[1]
+                            ?.split(" ")
+                            .slice(0, 25)
+                            .join(" ") || ""}
+                        </Typography>
+                      </CardContent>
+                    </Card>
+                  </CartoonCard>
                 </motion.div>
               </Slide>
             </Grid>

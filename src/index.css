@@ -13,6 +13,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --ql-font-fredoka-one: "Comic Sans MS", "Fredoka One", cursive;
   --ql-font-arial: Arial, sans-serif;
   --ql-font-comic-sans: "Comic Sans MS", cursive, sans-serif;
   --ql-font-courier-new: "Courier New", Courier, monospace;
@@ -21,11 +22,14 @@
   --ql-font-lucida: "Lucida Sans", sans-serif;
 }
 
+.ql-editor .ql-font-fredoka-one {
+  font-family: var(--ql-font-fredoka-one) !important;
+}
 .ql-editor .ql-font-arial {
   font-family: var(--ql-font-arial) !important;
 }
 .ql-editor .ql-font-comic-sans {
-  font-family: var(--ql-font-comic-sans) !important;
+  font-family: var(--ql-font-fredoka-one) !important;
 }
 .ql-editor .ql-font-courier-new {
   font-family: var(--ql-font-courier-new) !important;
@@ -65,7 +69,54 @@
   background-color: none !important;
 } */
 
-/* .ql-syntax {
-  color: black !important;
-  background-color: transparent !important;
-} */
+.ql-syntax {
+  color: inherit !important;
+  margin: "5px auto";
+  background: rgba(
+    255,
+    255,
+    255,
+    0.6
+  ) !important; /* Light transparent background */
+  border-radius: 8px; /* Rounded corners */
+  padding: 10px; /* Padding inside the code block */
+  font-family: "Fira Code", monospace; /* Optional: Use a coding font */
+  color: inherit !important; /* White text */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Light border for depth */
+}
+
+/* Cartoon-style Glassy Bluish Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track (background) */
+::-webkit-scrollbar-track {
+  background: rgba(30, 144, 255, 0.3);
+  /* border-radius: 10px; */
+  /* backdrop-filter: blur(5px); Glassy effect */
+}
+
+/* Thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    45deg,
+    rgba(30, 144, 255, 0.9),
+    rgba(0, 102, 204, 0.9)
+  );
+  border-radius: 10px;
+  border: 2px solid rgba(0, 72, 204, 0.9); /* Darker blue outline */
+  box-shadow: 3px 3px 6px rgba(0, 72, 204, 0.6); /* Cartoon pop effect */
+  transition: 0.3s ease-in-out;
+}
+
+/* Thumb hover effect */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    45deg,
+    rgba(60, 160, 255, 0.9),
+    rgba(0, 122, 255, 0.9)
+  );
+  transform: scale(1.1);
+  box-shadow: 4px 4px 8px rgba(0, 72, 204, 0.8);
+}

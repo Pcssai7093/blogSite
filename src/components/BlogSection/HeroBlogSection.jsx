@@ -32,7 +32,7 @@ const CategoryContainer = styled(Box)({
   display: "flex",
   gap: 4,
   flexWrap: "wrap",
-  marginTop: 16,
+  // marginTop: 16,
   padding: "0 16px 16px 16px",
 });
 
@@ -81,17 +81,22 @@ const workExperiences = [
 ];
 
 const CartoonCard = styled(Card)(({ theme }) => ({
-  borderRadius: 16,
+  // borderRadius: 7,
   // background: "linear-gradient(145deg, #ffea00, #ffcc00)",
-  boxShadow: "2px 2px 5px #21A3F3",
-  border: "2px solid #21A3F3",
+  // boxShadow: "8px 8px 0px white",
+  // border: "2px solid #21A3F3",
   padding: "16px",
   fontFamily: "'Comic Sans MS', 'Fredoka One', cursive",
   transition: "transform 0.2s ease, box-shadow 0.2s ease",
   "&:hover": {
     transform: "translateY(-4px)",
-    boxShadow: "8px 8px 0px #21A3F3",
+    // boxShadow: "8px 8px 0px #21A3F3",
+    // background: "rgba(255, 255, 255, 1)", // Semi-transparent white
   },
+
+  background: "rgba(255, 255, 255, 0.3)",
+  backdropFilter: "blur(10px)", // Blur effect for glassy look
+  WebkitBackdropFilter: "blur(10px)",
 }));
 
 const CartoonTypography = styled(Typography)({
@@ -102,7 +107,18 @@ const CartoonTypography = styled(Typography)({
 });
 
 const HeroBlogSection = () => {
-  const chipColors = ["#FFCC00", "#21A3F3", "#66FF66"];
+  const chipColors = [
+    "#28A745", // Dark Green
+    "#D32F2F", // Strong Red
+    "#6A1B9A", // Deep Purple
+    "#FFAA00", // Deep Orange-Yellow
+    "#007ACC", // Bright Blue
+    "#FF5722", // Vivid Orange
+    "#00897B", // Teal Green
+    "#1976D2", // Dark Blue
+    "#C2185B", // Dark Pink
+    "#795548", // Warm Brown
+  ];
   const navigate = useNavigate();
   const [heroBlogs, setHeroBlogs] = useState([]);
 
@@ -150,6 +166,7 @@ const HeroBlogSection = () => {
               background: "linear-gradient(45deg, #ffffff 30%, #f0f0f0 90%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
+              WebkitTextStroke: "0.3px black",
               "&:hover": {
                 transform: "scale(1.5)",
               },
@@ -170,6 +187,7 @@ const HeroBlogSection = () => {
               background: "linear-gradient(45deg, #ffffff 30%, #f0f0f0 90%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
+              WebkitTextStroke: "0.3px black",
               "&:hover": {
                 transform: "scale(1.5)",
               },
@@ -182,7 +200,7 @@ const HeroBlogSection = () => {
       <Grid container spacing={3}>
         {heroBlogs &&
           heroBlogs.map((work, index) => (
-            <Grid item key={index} xs={12} sm={6} md={4}>
+            <Grid item key={index} xs={12} sm={6} md={6}>
               <Slide>
                 <motion.div
                   animate={{
@@ -231,8 +249,8 @@ const HeroBlogSection = () => {
                             variant="outlined"
                             size="small"
                             sx={{ fontSize: "0.6rem" }}
-                            color={chipColors[index % 3]}
-                            bgColor={chipColors[index % 3]}
+                            color={chipColors[index % 10]}
+                            bgColor={chipColors[index % 10]}
                           >
                             {category}
                           </CategoryButton>

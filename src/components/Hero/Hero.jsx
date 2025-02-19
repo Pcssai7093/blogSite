@@ -50,7 +50,8 @@ const Hero = () => {
     <Container
       maxWidth="md"
       sx={{
-        marginTop: "5vh",
+        // marginTop: "5vh",
+        py: 1,
         display: "flex",
         alignItems: "center",
         // paddingLeft: "10vw",
@@ -121,6 +122,7 @@ const Hero = () => {
                 background: "linear-gradient(45deg, #ffffff 30%, #f0f0f0 90%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
+                WebkitTextStroke: "0.5px black",
               }}
             >
               <Typing
@@ -134,6 +136,7 @@ const Hero = () => {
                         "linear-gradient(45deg, #ffffff 30%, #f0f0f0 90%)",
                       WebkitBackgroundClip: "text",
                       WebkitTextFillColor: "transparent",
+                      WebkitTextStroke: "0.3px black",
                     }}
                   >
                     |

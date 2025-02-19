@@ -67,8 +67,9 @@ function Navbar(props) {
       <AppBar
         component="nav"
         sx={{
-          position: "sticky",
+          position: "sticky", // Stays at the top when scrolled past
           top: 0,
+          left: 0,
           bgcolor: "transparent",
           boxShadow: "none",
         }}
@@ -97,7 +98,9 @@ function Navbar(props) {
           >
             {/* Chandra Sekhar */}
           </Typography>
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
+          <Box
+            sx={{ display: { xs: "none", sm: "block" }, marginRight: "20px" }}
+          >
             {navItems.map((item) => (
               <motion.div
                 animate={{
@@ -109,7 +112,7 @@ function Navbar(props) {
                   repeatType: "reverse", // Smoothly zoom in & out
                   ease: "easeInOut",
                 }}
-                style={{ display: "inline-block" }}
+                style={{ display: "inline-block", marginLeft: "10px" }}
               >
                 <Button
                   key={item}
@@ -124,7 +127,7 @@ function Navbar(props) {
                     WebkitTextFillColor: "transparent",
                     transition: "transform 0.2s ease",
                     "&:hover": {
-                      transform: "scale(2)",
+                      transform: "scale(1.2)",
                     },
                   }}
                 >

@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import QuillEditor from "react-quill";
 import ToolBar, { modules, formats } from "./ToolBar";
-import { Box, Button } from "@mui/material";
+import { Box, Button, styled, Card, Typography } from "@mui/material";
 import { Autocomplete, TextField, Chip, CircularProgress } from "@mui/material";
 import fireDb from "../../firebaseInit";
 import { collection, addDoc } from "firebase/firestore";
@@ -10,6 +10,52 @@ import "react-quill/dist/quill.snow.css";
 
 import styles from "./styles.module.css";
 import DialogBox from "../../components/DialogBox/DialogBox";
+
+const CategoryContainer = styled(Box)({
+  display: "flex",
+  gap: 8,
+  flexWrap: "wrap",
+  marginTop: 16,
+  padding: "0 16px 16px 16px",
+});
+
+const CategoryButton = styled(Button)(({ theme, bgColor }) => ({
+  borderRadius: 20, // More rounded but not a full pill shape
+  textTransform: "none",
+  padding: "6px 18px",
+  // minWidth: "unset",
+  fontWeight: "bold",
+  fontFamily: "'Comic Sans MS', 'Fredoka One', cursive", // Playful font
+  fontSize: "0.75rem",
+  background: bgColor, // Warm cartoonish color
+  color: "#fff",
+  border: `2px solid white`,
+  boxShadow: `4px 4px 0px ${bgColor}`, // Cartoon pop-out effect
+  transition: "transform 0.2s ease, box-shadow 0.2s ease",
+  "&:hover": {
+    transform: "translateY(-2px)",
+    boxShadow: `6px 6px 0px white`,
+  },
+  "&:active": {
+    transform: "translateY(2px)",
+    boxShadow: `2px 2px 0px ${bgColor}`,
+  },
+}));
+
+const CartoonCard = styled(Card)(({ theme }) => ({
+  fontFamily: "'Comic Sans MS', 'Fredoka One', cursive",
+  transition: "transform 0.2s ease, box-shadow 0.2s ease",
+  "&:hover": {
+    transform: "translateY(-4px)",
+    // boxShadow: "8px 8px 0px #21A3F3",
+    // background: "rgba(255, 255, 255, 1)", // Semi-transparent white
+  },
+
+  background: "rgba(255, 255, 255, 0.5)",
+  backdropFilter: "blur(10px)", // Blur effect for glassy look
+  WebkitBackdropFilter: "blur(10px)",
+}));
+
 const categories = ["Technology", "Health", "Business", "Education", "Sports"];
 
 const AddBlog = () => {
@@ -18,6 +64,18 @@ const AddBlog = () => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [value, setValue] = useState("");
   const [error, setError] = useState(""); // State to store error message
+  const chipColors = [
+    "#28A745", // Dark Green
+    "#D32F2F", // Strong Red
+    "#6A1B9A", // Deep Purple
+    "#FFAA00", // Deep Orange-Yellow
+    "#007ACC", // Bright Blue
+    "#FF5722", // Vivid Orange
+    "#00897B", // Teal Green
+    "#1976D2", // Dark Blue
+    "#C2185B", // Dark Pink
+    "#795548", // Warm Brown
+  ];
 
   const quillRef = useRef();
 
@@ -203,37 +261,98 @@ const AddBlog = () => {
             position: "sticky",
             top: "0",
             zIndex: 1000,
-            backgroundColor: "white",
+            // backgroundColor: "white",
             // padding: "10px",
             // boxShadow: "0px 2px 4px rgba(0,0,0,0.1)",
           }}
         >
           <ToolBar />
         </Box>
-        <div className={styles.wrapper}>
-          <Box
-            sx={{
-              border: "1px solid #ccc",
-              borderRadius: "4px",
-              padding: "10px",
-              width: { xs: "100%", sm: "90%", md: "80%", lg: "80%", xl: "80%" }, // Full width
-              minHeight: "250px", // Adjust based on design
-              "& .ql-editor": {
-                minHeight: "200px", // Ensures text input space
-              },
-              backgroundColor: "#F5F5F5",
-            }}
-          >
-            <QuillEditor
-              theme="snow"
-              ref={quillRef}
-              value={value}
-              onChange={handleChange}
-              modules={modules}
-              formats={formats}
-            />
-          </Box>
-        </div>
+        <CartoonCard
+          sx={{
+            width: {
+              xs: "100%",
+              sm: "90%",
+              md: "80%",
+              lg: "80%",
+              xl: "80%",
+            },
+            margin: "10px auto",
+          }}
+        >
+          <div className={styles.wrapper}>
+            <Box
+              sx={{
+                // border: "1px solid #ccc",
+                borderRadius: "4px",
+                // padding: "10px",
+                width: "100%", // Full width
+                minHeight: "250px", // Adjust based on design
+                "& .ql-editor": {
+                  minHeight: "200px", // Ensures text input space
+                },
+                // backgroundColor: "#F5F5F5",
+              }}
+            >
+              <Box
+                sx={{
+                  width: {
+                    xs: "100%",
+                    sm: "90%",
+                    md: "80%",
+                    lg: "80%",
+                    xl: "80%",
+                  }, //
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "start",
+                }}
+              >
+                <Typography
+                  variant="h3"
+                  sx={{
+                    color: "white",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextStroke: "0.6px black",
+                  }}
+                >
+                  {title && title}
+                </Typography>
+                {/* <Typography variant="caption">{blogDate}</Typography> */}
+                <CategoryContainer
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row-reverse",
+                    alignItems: "start",
+                    // minHeight: "100px",
+                  }}
+                >
+                  {selectedCategories &&
+                    selectedCategories.map((category, index) => (
+                      <CategoryButton
+                        key={category}
+                        variant="outlined"
+                        size="small"
+                        sx={{ fontSize: "0.6rem" }}
+                        color={chipColors[index % 10]}
+                        bgColor={chipColors[index % 10]}
+                      >
+                        {category}
+                      </CategoryButton>
+                    ))}
+                </CategoryContainer>
+              </Box>
+              <QuillEditor
+                theme="snow"
+                ref={quillRef}
+                value={value}
+                onChange={handleChange}
+                modules={modules}
+                formats={formats}
+              />
+            </Box>
+          </div>
+        </CartoonCard>
         <Box
           sx={{
             width: { xs: "100%", sm: "90%", md: "80%", lg: "80%", xl: "80%" },
