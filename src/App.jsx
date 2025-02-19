@@ -25,7 +25,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Box
         sx={{
-          backgroundImage: "url('../../blogSite/src/assets/2.png')",
+          backgroundImage: `url('${import.meta.env.BASE_URL}2.png')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat", // Ensures the background doesn’t repeat
