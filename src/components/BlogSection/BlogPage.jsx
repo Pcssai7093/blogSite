@@ -197,7 +197,7 @@ const BlogPage = () => {
                       }}
                     >
                       <IconButton
-                        onClick={() => navigate(`/blogSite/blog/${work.id}`)}
+                        onClick={() => navigate(`/blog/${work.id}`)}
                         aria-label="View Blog"
                       >
                         <LinkIcon />

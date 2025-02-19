@@ -33,11 +33,11 @@ function App() {
           // overflowX: "hidden",
         }}
       >
-        <HashRouter>
+        <HashRouter basename="/">
           <Navbar />
           <Routes>
             <Route
-              path="/blogSite/work"
+              path="/work"
               element={
                 <>
                   <Hero />
@@ -49,7 +49,7 @@ function App() {
               }
             />
             <Route
-              path="/blogSite/blog"
+              path="/blog"
               element={
                 <>
                   <BlogPage />
@@ -57,7 +57,7 @@ function App() {
               }
             />
             <Route
-              path="/blogSite/add-blog"
+              path="/add-blog"
               element={
                 <>
                   <AddBlog />
@@ -65,7 +65,7 @@ function App() {
               }
             />
             <Route
-              path="/blogSite/blog/:bId"
+              path="/blog/:bId"
               element={
                 <>
                   <ViewBlog />
