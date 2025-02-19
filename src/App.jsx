@@ -5,7 +5,7 @@ import Navbar from "./pages/Navbar/Navbar";
 import Hero from "./components/Hero/Hero";
 import HeroBlogSection from "./components/BlogSection/HeroBlogSection";
 import WorkCard from "./components/WorkSection/WorkSection";
-import { Routes, BrowserRouter, Route } from "react-router-dom";
+import { Routes, BrowserRouter, Route, HashRouter } from "react-router-dom";
 import BlogPage from "./components/BlogSection/BlogPage";
 import ViewBlog from "./pages/ViewBlog/ViewBlog";
 import { Box } from "@mui/material";
@@ -33,7 +33,7 @@ function App() {
           // overflowX: "hidden",
         }}
       >
-        <BrowserRouter>
+        <HashRouter>
           <Navbar />
           <Routes>
             <Route
@@ -73,7 +73,7 @@ function App() {
               }
             />
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
         {/* <Navbar /> */}
 
         {/* navbar will be out of router and the page content changes */}
