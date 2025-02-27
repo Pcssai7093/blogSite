@@ -89,7 +89,7 @@ const AddBlog = () => {
   };
 
   useEffect(() => {
-    console.log(fireDb);
+    // console.log(fireDb);
   }, []);
 
   const handleChange = (value) => {

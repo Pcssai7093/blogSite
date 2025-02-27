@@ -90,8 +90,6 @@ const ViewBlog = () => {
   const { bId } = useParams();
 
   useEffect(() => {
-    console.log(fireDb);
-
     getDoc(doc(fireDb, "blogs", bId))
       .then((docSnap) => {
         if (docSnap.exists()) {
@@ -127,7 +125,7 @@ const ViewBlog = () => {
                 sx={{
                   width: {
                     xs: "100%",
-                    sm: "90%",
+                    sm: "100%",
                     md: "80%",
                     lg: "80%",
                     xl: "80%",
@@ -143,6 +141,7 @@ const ViewBlog = () => {
                     color: "white",
                     WebkitBackgroundClip: "text",
                     WebkitTextStroke: "0.6px black",
+                    fontSize: { xs: "2rem", sm: "2rem", md: "3rem" },
                   }}
                 >
                   {title}
@@ -179,7 +178,7 @@ const ViewBlog = () => {
                   padding: "10px",
                   width: {
                     xs: "100%",
-                    sm: "90%",
+                    sm: "100%",
                     md: "80%",
                     lg: "80%",
                     xl: "80%",

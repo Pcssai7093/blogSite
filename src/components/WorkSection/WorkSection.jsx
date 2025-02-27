@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "@mui/system";
 import {
   Container,
@@ -12,6 +12,16 @@ import {
   ListItem,
   ListItemIcon,
 } from "@mui/material";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  doc,
+  orderBy,
+  limit,
+  query,
+} from "firebase/firestore";
+import fireDb from "../../firebaseInit";
 
 const workExperiences = [
   {
@@ -93,6 +103,25 @@ const CartoonCard = styled(Card)(({ theme }) => ({
 }));
 
 const WorkCard = () => {
+  const [workData, setWorkData] = useState([]);
+  useEffect(() => {
+    console.log("hello");
+
+    const q = query(collection(fireDb, "workExperiences"));
+
+    getDocs(q)
+      .then((res) => {
+        const workData = res.docs.map((doc) => ({
+          id: doc.id, // Firestore document ID
+          ...doc.data(), // Spread document data
+        }));
+        setWorkData(workData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   const chipColors = [
     "#FFAA00", // Deep Orange-Yellow
     "#007ACC", // Bright Blue
@@ -161,73 +190,76 @@ const WorkCard = () => {
         ))}
       </Typography>
       <Grid container spacing={3}>
-        {workExperiences.map((work, index) => (
-          <Grid item key={index} xs={12} sm={12} md={12}>
-            <CartoonCard>
-              <Card
-                variant="outlined"
-                sx={{
-                  height: "100%",
-                  transition: "transform 0.2s ease",
-                  "&:hover": {
-                    transform: "scale(1.05)",
-                  },
-                  backgroundColor: "transparent",
-                  border: "none",
-                  boxShadow: "none",
-                }}
-              >
-                <CardContent>
-                  <Typography variant="h6" component="div">
-                    {work.title}
-                  </Typography>
-                  <Typography color="textSecondary">{work.company}</Typography>
-                  <Box mt={1} mb={2}>
-                    <Typography variant="body2" color="textSecondary">
-                      {work.duration}
-                    </Typography>
-                  </Box>
-                  <Typography variant="body2">
-                    <List>
-                      {work.description.map((point, index) => (
-                        <ListItem
-                          key={index}
-                          sx={{ display: "list-item", pl: 2 }}
-                        >
-                          <ListItemIcon sx={{ minWidth: "30px" }}>
-                            📌
-                          </ListItemIcon>
-                          {point}
-                        </ListItem>
-                      ))}
-                    </List>
-                  </Typography>
-                </CardContent>
-                <CategoryContainer
+        {workData &&
+          workData.map((work, index) => (
+            <Grid item key={index} xs={12} sm={12} md={12}>
+              <CartoonCard>
+                <Card
+                  variant="outlined"
                   sx={{
-                    display: "flex",
-                    flexDirection: "row-reverse",
-                    alignItems: "start",
-                    // minHeight: "100px",
+                    height: "100%",
+                    transition: "transform 0.2s ease",
+                    "&:hover": {
+                      transform: "scale(1.05)",
+                    },
+                    backgroundColor: "transparent",
+                    border: "none",
+                    boxShadow: "none",
                   }}
                 >
-                  {work.skills.map((category, index) => (
-                    <CategoryButton
-                      key={category}
-                      variant="outlined"
-                      size="small"
-                      sx={{ fontSize: "0.6rem" }}
-                      color={chipColors[index % 10]}
-                      bgColor={chipColors[index % 10]}
-                    >
-                      {category}
-                    </CategoryButton>
-                  ))}
-                </CategoryContainer>
-              </Card>
-            </CartoonCard>
-          </Grid>
-        ))}
+                  <CardContent>
+                    <Typography variant="h6" component="div">
+                      {work.role}
+                    </Typography>
+                    <Typography color="textSecondary">
+                      {work.company}
+                    </Typography>
+                    <Box mt={1} mb={2}>
+                      <Typography variant="body2" color="textSecondary">
+                        {work.duration}
+                      </Typography>
+                    </Box>
+                    <Typography variant="body2">
+                      <List>
+                        {work.description.map((point, index) => (
+                          <ListItem
+                            key={index}
+                            sx={{ display: "list-item", pl: 2 }}
+                          >
+                            <ListItemIcon sx={{ minWidth: "30px" }}>
+                              📌
+                            </ListItemIcon>
+                            {point}
+                          </ListItem>
+                        ))}
+                      </List>
+                    </Typography>
+                  </CardContent>
+                  <CategoryContainer
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row-reverse",
+                      alignItems: "start",
+                      // minHeight: "100px",
+                    }}
+                  >
+                    {work.skills.map((category, index) => (
+                      <CategoryButton
+                        key={category}
+                        variant="outlined"
+                        size="small"
+                        sx={{ fontSize: "0.6rem" }}
+                        color={chipColors[index % 10]}
+                        bgColor={chipColors[index % 10]}
+                      >
+                        {category}
+                      </CategoryButton>
+                    ))}
+                  </CategoryContainer>
+                </Card>
+              </CartoonCard>
+            </Grid>
+          ))}
       </Grid>
     </Container>
   );

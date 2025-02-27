@@ -23,7 +23,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Box
         sx={{
-          backgroundImage: `url('${import.meta.env.BASE_URL}2.png')`,
+          backgroundImage: `url('${import.meta.env.BASE_URL}3.png')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat", // Ensures the background doesn’t repeat
@@ -36,6 +36,18 @@ function App() {
         <HashRouter basename="/">
           <Navbar />
           <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Hero />
+                  <br />
+                  {/* <BlogCard /> */}
+                  <HeroBlogSection />
+                  <WorkCard />
+                </>
+              }
+            />
             <Route
               path="/work"
               element={

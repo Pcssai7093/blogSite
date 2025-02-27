@@ -11,6 +11,15 @@ import {
 import Typing from "react-typing-effect";
 import { FiDownload } from "react-icons/fi";
 import { motion } from "framer-motion";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  doc,
+  orderBy,
+  limit,
+  query,
+} from "firebase/firestore";
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
   width: 250,
@@ -29,18 +38,29 @@ const StyledButton = styled(Button)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   textTransform: "none",
   fontSize: "0.75rem",
-  transition: "transform 0.2s ease",
+  transition: "transform 0.2s ease, background 0.3s ease",
+
+  // 🟢 Glassy background with transparency
+  background: "rgba(0, 140, 255, 0.822)", // Semi-transparent blue
+  backdropFilter: "blur(10px)", // Blur effect
+  WebkitBackdropFilter: "blur(10px)",
+
+  // 🟢 Subtle frosted glass border
+  border: "1px solid rgba(255, 255, 255, 0.3)",
+
+  // 🟢 Soft glow effect
+  boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+
   "&:hover": {
     transform: "translateY(-2px)",
   },
-  background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
 }));
 
 const Hero = () => {
   const handleDownload = () => {
     const link = document.createElement("a");
-    link.href = "/path-to-your-resume.pdf";
-    link.download = "resume.pdf";
+    link.href = "./Resume_2024.pdf";
+    link.download = "Resume_ChandraSekhar.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -93,7 +113,7 @@ const Hero = () => {
             >
               <StyledAvatar
                 alt="John Doe Profile Picture"
-                src="https://images.unsplash.com/photo-1599566150163-29194dcaad36"
+                src={`${import.meta.env.BASE_URL}profile_army_crop2.JPG`}
                 loading="lazy"
               />
             </Box>
@@ -157,15 +177,31 @@ const Hero = () => {
               Node.js, and Cloud Technologies. I love creating innovative
               solutions and bringing ideas to life through code.
             </Typography>
-            <StyledButton
-              variant="contained"
-              color="primary"
-              startIcon={<FiDownload />}
-              onClick={handleDownload}
-              aria-label="Download Resume"
+            <motion.div
+              animate={{
+                // Circular jiggle along x and y axes
+                x: [0, 5, 0, -5, 0], // Horizontal movement
+                y: [0, -5, 0, 5, 0], // Vertical movement
+
+                // Zoom In & Zoom Out
+              }}
+              transition={{
+                duration: 2, // Controls the speed of the movement
+                repeat: Infinity, // Infinite loop
+                repeatType: "loop", // Loop the animation
+                ease: "easeInOut", // Smooth transition
+              }}
             >
-              Download Resume
-            </StyledButton>
+              <StyledButton
+                variant="contained"
+                color="primary"
+                startIcon={<FiDownload />}
+                onClick={handleDownload}
+                aria-label="Download Resume"
+              >
+                Download Resume
+              </StyledButton>
+            </motion.div>
           </Box>
         </Grid>
       </Grid>
