@@ -4,7 +4,16 @@ import ToolBar, { modules, formats } from "./ToolBar";
 import { Box, Button, styled, Card, Typography } from "@mui/material";
 import { Autocomplete, TextField, Chip, CircularProgress } from "@mui/material";
 import fireDb from "../../firebaseInit";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { useParams } from "react-router-dom";
+
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  getDoc,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 import axios from "axios";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
@@ -61,7 +70,7 @@ const CartoonCard = styled(Card)(({ theme }) => ({
 
 const categories = ["Technology", "Health", "Business", "Education", "Sports"];
 
-const AddBlog = () => {
+const EditBlog = () => {
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -81,6 +90,7 @@ const AddBlog = () => {
   ];
 
   const quillRef = useRef();
+  const { bId } = useParams();
 
   const [open, setOpen] = useState(false);
 
@@ -109,6 +119,24 @@ const AddBlog = () => {
 
   useEffect(() => {
     // console.log(fireDb);
+
+    getDoc(doc(fireDb, "blogs", bId))
+      .then((docSnap) => {
+        if (docSnap.exists()) {
+          let bData = docSnap.data();
+          console.log("Fetched Blog:", bData);
+          setValue(bData.BlogContent);
+          setTitle(bData.BlogTitle);
+          setSelectedCategories(bData.BlogCategories);
+          setBlogDate(bData.createdAt);
+          console.log(docSnap.data().BlogContent);
+        } else {
+          console.log("No such document!");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   const handleChange = (value) => {
@@ -146,6 +174,8 @@ const AddBlog = () => {
     }
     console.log("isAdmin", isAdmin);
     if (isAdmin) {
+      const docRef = doc(fireDb, "blogs", bId);
+
       console.log(title);
       console.log(selectedCategories);
       console.log(value);
@@ -161,10 +191,10 @@ const AddBlog = () => {
 
       // const formattedDate = `${day}-${month}-${year}`;
       try {
-        let saveRes = await addDoc(collection(fireDb, "blogs"), {
-          BlogTitle,
-          BlogCategories,
-          BlogContent,
+        let saveRes = await updateDoc(docRef, {
+          BlogTitle: BlogTitle,
+          BlogCategories: BlogCategories,
+          BlogContent: BlogContent,
           createdAt: serverTimestamp(),
         });
         console.log(saveRes);
@@ -203,6 +233,7 @@ const AddBlog = () => {
             label="Title"
             multiline
             // variant="standard"
+            value={title}
             onChange={handleTitleChange}
             maxRows={4}
             sx={{
@@ -242,44 +273,46 @@ const AddBlog = () => {
               },
             }}
           />
-          <Autocomplete
-            multiple
-            freeSolo
-            options={categories} // Predefined category suggestions
-            value={selectedCategories}
-            onChange={handleChangeCategory}
-            renderTags={(value, getTagProps) =>
-              value.map((option, index) => (
-                <Chip
-                  variant="outlined"
-                  label={option}
-                  {...getTagProps({ index })}
+          {selectedCategories && (
+            <Autocomplete
+              multiple
+              freeSolo
+              options={categories} // Predefined category suggestions
+              value={selectedCategories}
+              onChange={handleChangeCategory}
+              renderTags={(value, getTagProps) =>
+                value.map((option, index) => (
+                  <Chip
+                    variant="outlined"
+                    label={option}
+                    {...getTagProps({ index })}
+                  />
+                ))
+              }
+              sx={{
+                flex: "0 1 40%",
+                fontSize: "0.8rem",
+                // width: {
+                //   xs: "90%",
+                //   sm: "85%",
+                //   md: "74%",
+                //   lg: "74%",
+                //   xl: "70%",
+                // },
+                marginTop: "10px",
+                backgroundColor: "#F5F5F5",
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Categories"
+                  placeholder="Add up to 3 tags"
+                  error={!!error} // Show error state on TextField
+                  helperText={error} // Display error message
                 />
-              ))
-            }
-            sx={{
-              flex: "0 1 40%",
-              fontSize: "0.8rem",
-              // width: {
-              //   xs: "90%",
-              //   sm: "85%",
-              //   md: "74%",
-              //   lg: "74%",
-              //   xl: "70%",
-              // },
-              marginTop: "10px",
-              backgroundColor: "#F5F5F5",
-            }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Categories"
-                placeholder="Add up to 3 tags"
-                error={!!error} // Show error state on TextField
-                helperText={error} // Display error message
-              />
-            )}
-          />
+              )}
+            />
+          )}
         </Box>
         <Box
           sx={{
@@ -398,7 +431,7 @@ const AddBlog = () => {
             {loading ? (
               <CircularProgress size={24} color="inherit" />
             ) : (
-              "Submit Blog"
+              "update Blog"
             )}
           </Button>
         </Box>
@@ -430,4 +463,4 @@ const AddBlog = () => {
   );
 };
 
-export default AddBlog;
+export default EditBlog;

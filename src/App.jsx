@@ -11,6 +11,7 @@ import ViewBlog from "./pages/ViewBlog/ViewBlog";
 import { Box } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import EditBlog from "./pages/EditBlog/EditBlog";
 
 const theme = createTheme({
   typography: {
@@ -81,6 +82,14 @@ function App() {
               element={
                 <>
                   <ViewBlog />
+                </>
+              }
+            />
+            <Route
+              path="/edit-blog/:bId"
+              element={
+                <>
+                  <EditBlog />
                 </>
               }
             />

@@ -9,8 +9,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy" : "npm run build",
-    "deploy" : "gh-pages -d dist"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -19,6 +19,7 @@
     "@mui/icons-material": "^6.4.2",
     "@mui/material": "^6.4.1",
     "@tailwindcss/vite": "^4.0.0",
+    "axios": "^1.8.1",
     "bootstrap": "^5.3.3",
     "bootstrap-select": "^1.13.18",
     "date-fns": "^4.1.0",

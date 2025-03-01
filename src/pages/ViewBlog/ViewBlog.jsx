@@ -10,6 +10,7 @@ import { styled } from "@mui/system";
 import fireDb from "../../firebaseInit";
 import { collection, addDoc, getDoc, doc } from "firebase/firestore";
 import Highlight from "react-highlight";
+import { format } from "date-fns";
 
 import "highlight.js/styles/github.css";
 
@@ -171,7 +172,9 @@ const ViewBlog = () => {
                   >
                     {title && title}
                   </Typography>
-                  <Typography variant="caption">{blogDate}</Typography>
+                  <Typography variant="caption">
+                    {format(blogDate?.toDate?.(), "dd-MM-yyyy")}
+                  </Typography>
                   <CategoryContainer
                     sx={{
                       display: "flex",

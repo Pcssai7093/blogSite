@@ -261,7 +261,7 @@ const HeroBlogSection = () => {
                           {work.BlogTitle}
                         </Typography>
                         <Typography variant="body2" component="div">
-                          {work.createdAt}
+                          {format(work.createdAt?.toDate?.(), "dd-MM-yyyy")}
                         </Typography>
                         <Typography color="textSecondary">
                           {work.company}
