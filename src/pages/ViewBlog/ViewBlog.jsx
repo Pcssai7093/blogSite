@@ -3,6 +3,9 @@ import QuillEditor from "react-quill";
 import ToolBar, { modules, formats } from "./ToolBar";
 import { Box, Button, Card } from "@mui/material";
 import { Autocomplete, TextField, Chip, Typography } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
+import Skeleton from "@mui/material/Skeleton";
+import { motion } from "framer-motion";
 import { styled } from "@mui/system";
 import fireDb from "../../firebaseInit";
 import { collection, addDoc, getDoc, doc } from "firebase/firestore";
@@ -86,6 +89,11 @@ const ViewBlog = () => {
     "#795548", // Warm Brown
   ];
 
+  const fadeInVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
   const quillRef = useRef();
   const { bId } = useParams();
 
@@ -111,98 +119,116 @@ const ViewBlog = () => {
 
   return (
     <>
-      <div className={styles.contentwrapper}>
-        <div className={styles.wrapper}>
-          <CartoonCard>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
+      {!value ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
+          <CircularProgress />
+        </div>
+      ) : (
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeInVariants}
+          className={styles.contentwrapper}
+        >
+          <div className={styles.wrapper}>
+            <CartoonCard>
               <Box
                 sx={{
-                  width: {
-                    xs: "100%",
-                    sm: "100%",
-                    md: "80%",
-                    lg: "80%",
-                    xl: "80%",
-                  }, //
                   display: "flex",
                   flexDirection: "column",
-                  alignItems: "start",
+                  alignItems: "center",
                 }}
               >
-                <Typography
-                  variant="h3"
+                <Box
                   sx={{
-                    color: "white",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextStroke: "0.6px black",
-                    fontSize: { xs: "2rem", sm: "2rem", md: "3rem" },
-                  }}
-                >
-                  {title}
-                </Typography>
-                <Typography variant="caption">{blogDate}</Typography>
-                <CategoryContainer
-                  sx={{
+                    width: {
+                      xs: "100%",
+                      sm: "100%",
+                      md: "80%",
+                      lg: "80%",
+                      xl: "80%",
+                    }, //
                     display: "flex",
-                    flexDirection: "row-reverse",
+                    flexDirection: "column",
                     alignItems: "start",
-                    // minHeight: "100px",
                   }}
                 >
-                  {tags &&
-                    tags.map((category, index) => (
-                      <CategoryButton
-                        key={category}
-                        variant="outlined"
-                        size="small"
-                        sx={{ fontSize: "0.6rem" }}
-                        color={chipColors[index % 10]}
-                        bgColor={chipColors[index % 10]}
-                      >
-                        {category}
-                      </CategoryButton>
-                    ))}
-                </CategoryContainer>
-              </Box>
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      color: "white",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextStroke: "0.6px black",
+                      fontSize: { xs: "2rem", sm: "2rem", md: "3rem" },
+                    }}
+                  >
+                    {title && title}
+                  </Typography>
+                  <Typography variant="caption">{blogDate}</Typography>
+                  <CategoryContainer
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row-reverse",
+                      alignItems: "start",
+                      // minHeight: "100px",
+                    }}
+                  >
+                    {tags &&
+                      tags.map((category, index) => (
+                        <CategoryButton
+                          key={category}
+                          variant="outlined"
+                          size="small"
+                          sx={{ fontSize: "0.6rem" }}
+                          color={chipColors[index % 10]}
+                          bgColor={chipColors[index % 10]}
+                        >
+                          {category}
+                        </CategoryButton>
+                      ))}
+                  </CategoryContainer>
+                </Box>
 
-              <Box
-                sx={{
-                  //   border: "1px solid #ccc",
-                  //   borderRadius: "4px",
-                  padding: "10px",
-                  width: {
-                    xs: "100%",
-                    sm: "100%",
-                    md: "80%",
-                    lg: "80%",
-                    xl: "80%",
-                  }, // Full width
-                  minHeight: "250px", // Adjust based on design
-                  "& .ql-editor": {
-                    minHeight: "80vh", // Ensures text input space
-                  },
-                  // backgroundColor: "#F5F5F5",
-                }}
-              >
-                <QuillEditor
-                  theme="snow"
-                  ref={quillRef}
-                  value={value}
-                  modules={{ toolbar: false }}
-                  formats={formats}
-                  readOnly="true"
-                />
+                <Box
+                  sx={{
+                    //   border: "1px solid #ccc",
+                    //   borderRadius: "4px",
+                    padding: "10px",
+                    width: {
+                      xs: "100%",
+                      sm: "100%",
+                      md: "80%",
+                      lg: "80%",
+                      xl: "80%",
+                    }, // Full width
+                    minHeight: "250px", // Adjust based on design
+                    "& .ql-editor": {
+                      minHeight: "80vh", // Ensures text input space
+                    },
+                    // backgroundColor: "#F5F5F5",
+                  }}
+                >
+                  <QuillEditor
+                    theme="snow"
+                    ref={quillRef}
+                    value={value}
+                    modules={{ toolbar: false }}
+                    formats={formats}
+                    readOnly="true"
+                  />
+                </Box>
               </Box>
-            </Box>
-          </CartoonCard>
-        </div>
-      </div>
+            </CartoonCard>
+          </div>
+        </motion.div>
+      )}
     </>
   );
 };
