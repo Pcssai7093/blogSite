@@ -90,14 +90,15 @@ const Hero = () => {
           }}
         >
           <motion.div
-            animate={{
-              // Circular jiggle along x and y axes
-              x: [0, 5, 0, -5, 0], // Horizontal movement
-              y: [0, -5, 0, 5, 0], // Vertical movement
-
-              // Zoom In & Zoom Out
-              scale: [1, 1.1, 1], // Zoom in to 1.5x, then back to normal
-            }}
+            animate={
+              {
+                // Circular jiggle along x and y axes
+                // x: [0, 2, 0, -2, 0], // Horizontal movement
+                // y: [0, -2, 0, 2, 0], // Vertical movement
+                // // Zoom In & Zoom Out
+                // scale: [1, 1.1, 1], // Zoom in to 1.5x, then back to normal
+              }
+            }
             transition={{
               duration: 2, // Controls the speed of the movement
               repeat: Infinity, // Infinite loop
@@ -115,6 +116,7 @@ const Hero = () => {
                 alt="John Doe Profile Picture"
                 src={`${import.meta.env.BASE_URL}profile_army_crop2.JPG`}
                 loading="lazy"
+                sx={{ border: "5px solid grey", filter: "grayscale(100%)" }}
               />
             </Box>
           </motion.div>
@@ -135,14 +137,15 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
           >
             <Typography
-              variant="h3"
+              variant="h2"
               gutterBottom
               sx={{
                 fontWeight: 700,
-                background: "linear-gradient(45deg, #ffffff 30%, #f0f0f0 90%)",
+                background: "linear-gradient(45deg, #b3aeae 30%, #000000 90%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 WebkitTextStroke: "0.5px black",
+                fontFamily: "sketch2",
               }}
             >
               <Typing
@@ -198,8 +201,26 @@ const Hero = () => {
                 startIcon={<FiDownload />}
                 onClick={handleDownload}
                 aria-label="Download Resume"
+                sx={{
+                  backgroundColor: "grey",
+                  border: "none",
+                  "&:hover": { backgroundColor: "darkgrey" },
+                }}
               >
-                Download Resume
+                <Typography
+                  variant="body1"
+                  gutterBottom
+                  sx={{
+                    fontWeight: 700,
+                    WebkitBackgroundClip: "text",
+                    // WebkitTextFillColor: "transparent",
+                    // WebkitTextStroke: "0.5px black",
+                    // fontFamily: "sketch2",
+                    color: "white",
+                  }}
+                >
+                  Download Resume
+                </Typography>
               </StyledButton>
             </motion.div>
           </Box>

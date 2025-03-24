@@ -123,28 +123,35 @@ const WorkCard = () => {
   }, []);
 
   const chipColors = [
-    "#FFAA00", // Deep Orange-Yellow
-    "#007ACC", // Bright Blue
-    "#28A745", // Dark Green
-    "#D32F2F", // Strong Red
-    "#6A1B9A", // Deep Purple
-    "#FF5722", // Vivid Orange
-    "#00897B", // Teal Green
-    "#1976D2", // Dark Blue
-    "#C2185B", // Dark Pink
-    "#795548", // Warm Brown
+    "#6B6B6B", // Dim Grey
+    "#2B2B2B", // Almost Black
+    "#7D7D7D", // Stone Grey
+    "#4A4A4A", // Charcoal Grey
+    "#A6A6A6", // Light Grey
+    "#1C1C1C", // Very Dark Grey
+    "#737373", // Grey
+    "#3A3A3A", // Gunmetal Grey
+    "#5C5C5C", // Medium Dark Grey
+    "#969696", // Smokey Grey
+    "#8C8C8C", // Medium Grey
+    "#2F2F2F", // Dark Grey
   ];
 
   return (
     <Container maxWidth="md" sx={{ py: 4 }}>
       <Typography
-        variant="h4"
+        variant="h3"
         gutterBottom
+        id="work_section"
         sx={{
           fontWeight: 700,
-          background: "linear-gradient(45deg, #ffffff 30%, #f0f0f0 90%)",
+          background: "linear-gradient(45deg, #060505 30%, #000000 90%)",
           WebkitBackgroundClip: "text",
+          // display: "inline-block", // Ensures gradient applies correctly
           WebkitTextFillColor: "transparent",
+          WebkitTextStroke: "0.5px black",
+          fontFamily: "sketch2",
+          letterSpacing: "0.02rem",
         }}
       >
         {"Work".split("").map((letter, index) => (
@@ -155,7 +162,7 @@ const WorkCard = () => {
               display: "inline-flex",
               transition: "transform 0.3s ease",
               willChange: "transform", // Helps with rendering
-              background: "linear-gradient(45deg, #ffffff 30%, #f0f0f0 90%)",
+              background: "linear-gradient(45deg, #fefefe 30%, #000000 90%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               WebkitTextStroke: "0.3px black", // Adds a thin black outline
@@ -176,7 +183,7 @@ const WorkCard = () => {
               display: "inline-flex",
               transition: "transform 0.3s ease",
               willChange: "transform", // Helps with rendering
-              background: "linear-gradient(45deg, #ffffff 30%, #f0f0f0 90%)",
+              background: "linear-gradient(45deg, #fefefe 30%, #000000 90%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               WebkitTextStroke: "0.3px black",

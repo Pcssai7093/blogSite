@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const drawerWidth = 200;
-const navItems = ["Work", "Blog"];
+const navItems = ["Home", "Work", "Blog"];
 
 function Navbar(props) {
   const { window } = props;
@@ -29,14 +29,29 @@ function Navbar(props) {
     setMobileOpen((prevState) => !prevState);
   };
 
+  const scrollToWorkSection = () => {
+    document
+      .getElementById("work_section")
+      ?.scrollIntoView({ behavior: "smooth" });
+  };
+
   function handleNavButtonClick(e) {
-    let buttonText = e.target.textContent.toLowerCase();
+    let buttonText = e?.target?.textContent?.toLowerCase();
+    if (!buttonText) {
+      buttonText = e.toLowerCase();
+    }
     console.log(buttonText);
     if (buttonText == "work") {
       console.log("in work");
       navigate("/work");
+      setTimeout(() => {
+        scrollToWorkSection();
+      }, 500);
+      // navigate("/work");
     } else if (buttonText == "blog") {
       navigate("/blog");
+    } else if (buttonText == "home") {
+      navigate("/work");
     }
   }
 
@@ -48,11 +63,29 @@ function Navbar(props) {
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item} />
-            </ListItemButton>
-          </ListItem>
+          <Typography
+            variant="h3"
+            gutterBottom
+            sx={{
+              fontWeight: 700,
+              background: "linear-gradient(45deg, #b3aeae 30%, #000000 90%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              WebkitTextStroke: "0.5px black",
+              fontFamily: "sketch2",
+            }}
+          >
+            <ListItem key={item} disablePadding>
+              <ListItemButton
+                sx={{ textAlign: "center" }}
+                onClick={() => {
+                  handleNavButtonClick(item);
+                }}
+              >
+                <ListItemText primary={item} />
+              </ListItemButton>
+            </ListItem>
+          </Typography>
         ))}
       </List>
     </Box>
@@ -80,7 +113,7 @@ function Navbar(props) {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" }, color: "#2196F3" }}
+            sx={{ mr: 2, display: { sm: "none" }, color: "grey" }}
           >
             <MenuIcon />
           </IconButton>
@@ -114,25 +147,35 @@ function Navbar(props) {
                 }}
                 style={{ display: "inline-block", marginLeft: "10px" }}
               >
-                <Button
-                  key={item}
-                  onClick={handleNavButtonClick}
+                <Typography
+                  variant="h6 small"
+                  component="div"
                   sx={{
-                    color: "#fff",
-                    textTransform: "none",
+                    flexGrow: 1,
+                    display: { xs: "none", sm: "block" },
                     fontWeight: 700,
-                    background:
-                      "linear-gradient(45deg, #ffffff 30%, #f0f0f0 90%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    transition: "transform 0.2s ease",
-                    "&:hover": {
-                      transform: "scale(1.2)",
-                    },
                   }}
                 >
-                  {item}
-                </Button>
+                  <Button
+                    key={item}
+                    onClick={handleNavButtonClick}
+                    sx={{
+                      textTransform: "none",
+                      fontWeight: 700,
+                      transition: "transform 0.2s ease",
+                      "&:hover": {
+                        transform: "scale(1.2)",
+                      },
+                      background:
+                        "linear-gradient(45deg, #fefefe 30%, #000000 90%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      // color: "black",
+                    }}
+                  >
+                    {item}
+                  </Button>
+                </Typography>
               </motion.div>
             ))}
           </Box>

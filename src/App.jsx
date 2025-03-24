@@ -15,7 +15,7 @@ import EditBlog from "./pages/EditBlog/EditBlog";
 
 const theme = createTheme({
   typography: {
-    fontFamily: "'Comic Sans MS', 'Fredoka One', cursive",
+    fontFamily: "monospace",
   },
 });
 
@@ -23,16 +23,16 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Box
-        sx={{
-          backgroundImage: `url('${import.meta.env.BASE_URL}3.png')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat", // Ensures the background doesn’t repeat
-          minHeight: "100vh",
-          width: "100%",
-          backgroundAttachment: "fixed",
-          // overflowX: "hidden",
-        }}
+      // sx={{
+      //   backgroundImage: `url('${import.meta.env.BASE_URL}2.png')`,
+      //   backgroundSize: "cover",
+      //   backgroundPosition: "center",
+      //   backgroundRepeat: "no-repeat", // Ensures the background doesn’t repeat
+      //   minHeight: "100vh",
+      //   width: "100%",
+      //   backgroundAttachment: "fixed",
+      //   // overflowX: "hidden",
+      // }}
       >
         <HashRouter basename="/">
           <Navbar />

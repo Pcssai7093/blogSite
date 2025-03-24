@@ -1,7 +1,17 @@
+@font-face {
+  font-family: sketch1; /*Can be any text*/
+  src: url("./fonts/sketch-book-font/SketchBook-B5pB.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: sketch2; /*Can be any text*/
+  src: url("./fonts/madane-font/Madane-lxMry.ttf") format("truetype");
+}
+
 @import "tailwindcss";
 
 :root {
-  font-family: "Comic Sans MS", "Fredoka One", cursive !important;
+  font-family: "sketch1" !important;
   line-height: 1.5;
   font-weight: 400;
 
@@ -14,7 +24,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --ql-font-fredoka-one: "Comic Sans MS", "Fredoka One", cursive;
-  --ql-font-arial: Arial, sans-serif;
+  --ql-font-arial: "sketch1";
   --ql-font-comic-sans: "Comic Sans MS", cursive, sans-serif;
   --ql-font-courier-new: "Courier New", Courier, monospace;
   --ql-font-georgia: Georgia, serif;
@@ -92,31 +102,23 @@
 
 /* Track (background) */
 ::-webkit-scrollbar-track {
-  background: rgba(30, 144, 255, 0.3);
+  background: white;
   /* border-radius: 10px; */
   /* backdrop-filter: blur(5px); Glassy effect */
 }
 
 /* Thumb (the draggable part) */
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    45deg,
-    rgba(30, 144, 255, 0.9),
-    rgba(0, 102, 204, 0.9)
-  );
+  background: gray;
   /* border-radius: 10px; */
-  border: 2px solid rgba(0, 72, 204, 0.9); /* Darker blue outline */
-  box-shadow: 3px 3px 6px rgba(0, 72, 204, 0.6); /* Cartoon pop effect */
+  border: 2px solid gray; /* Darker blue outline */
+  box-shadow: 3px 3px 6px gray; /* Cartoon pop effect */
   transition: 0.3s ease-in-out;
 }
 
 /* Thumb hover effect */
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(
-    45deg,
-    rgba(60, 160, 255, 0.9),
-    rgba(0, 122, 255, 0.9)
-  );
+  background: gray;
   transform: scale(1.1);
-  box-shadow: 4px 4px 8px rgba(0, 72, 204, 0.8);
+  box-shadow: 3px 3px 6px gray;
 }
