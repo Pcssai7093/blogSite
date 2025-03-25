@@ -20,6 +20,23 @@ const theme = createTheme({
 });
 
 function App() {
+
+const style = document.createElement('style');
+style.textContent = `
+  @font-face {
+    font-family: sketch1;
+    src: url("${import.meta.env.BASE_URL}fonts/sketch-book-font/SketchBook-B5pB.ttf")
+      format("truetype");
+  }
+
+  @font-face {
+    font-family: sketch2;
+    src: url("${import.meta.env.BASE_URL}fonts/madane-font/Madane-lxMry.ttf")
+      format("truetype");
+  }
+`;
+document.head.appendChild(style);
+
   return (
     <ThemeProvider theme={theme}>
       <Box

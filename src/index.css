@@ -1,17 +1,7 @@
-@font-face {
-  font-family: sketch1; /*Can be any text*/
-  src: url("./fonts/sketch-book-font/SketchBook-B5pB.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: sketch2; /*Can be any text*/
-  src: url("./fonts/madane-font/Madane-lxMry.ttf") format("truetype");
-}
-
 @import "tailwindcss";
 
 :root {
-  font-family: "sketch1" !important;
+  /* font-family: "sketch1" !important; */
   line-height: 1.5;
   font-weight: 400;
 

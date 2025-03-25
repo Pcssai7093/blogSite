@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const drawerWidth = 200;
-const navItems = ["Home", "Work", "Blog"];
+const navItems = ["Home", "Work", "Blogs"];
 
 function Navbar(props) {
   const { window } = props;
@@ -46,9 +46,9 @@ function Navbar(props) {
       navigate("/work");
       setTimeout(() => {
         scrollToWorkSection();
-      }, 500);
+      }, 700);
       // navigate("/work");
-    } else if (buttonText == "blog") {
+    } else if (buttonText == "blogs") {
       navigate("/blog");
     } else if (buttonText == "home") {
       navigate("/work");

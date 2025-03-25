@@ -233,7 +233,12 @@ const WorkCard = () => {
                             key={index}
                             sx={{ display: "list-item", pl: 2 }}
                           >
-                            <ListItemIcon sx={{ minWidth: "30px" }}>
+                            <ListItemIcon
+                              sx={{
+                                minWidth: "30px",
+                                filter: "grayscale(100%)",
+                              }}
+                            >
                               📌
                             </ListItemIcon>
                             {point}
