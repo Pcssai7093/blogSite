@@ -15,7 +15,7 @@ import EditBlog from "./pages/EditBlog/EditBlog";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import { ThemeProvider } from "./context/ThemeContext";
-import Index from ".";
+import Index from "./Index";
 
 const theme = createTheme({
   typography: {
