@@ -9,9 +9,13 @@ import { Routes, BrowserRouter, Route, HashRouter } from "react-router-dom";
 import BlogPage from "./components/BlogSection/BlogPage";
 import ViewBlog from "./pages/ViewBlog/ViewBlog";
 import { Box } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import EditBlog from "./pages/EditBlog/EditBlog";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
+import { ThemeProvider } from "./context/ThemeContext";
+import Index from ".";
 
 const theme = createTheme({
   typography: {
@@ -20,12 +24,14 @@ const theme = createTheme({
 });
 
 function App() {
+  const style = document.createElement("style");
 
-const style = document.createElement('style');
-style.textContent = `
+  style.textContent = `
   @font-face {
     font-family: sketch1;
-    src: url("${import.meta.env.BASE_URL}fonts/sketch-book-font/SketchBook-B5pB.ttf")
+    src: url("${
+      import.meta.env.BASE_URL
+    }fonts/sketch-book-font/SketchBook-B5pB.ttf")
       format("truetype");
   }
 
@@ -35,90 +41,11 @@ style.textContent = `
       format("truetype");
   }
 `;
-document.head.appendChild(style);
+  document.head.appendChild(style);
 
   return (
-    <ThemeProvider theme={theme}>
-      <Box
-      // sx={{
-      //   backgroundImage: `url('${import.meta.env.BASE_URL}2.png')`,
-      //   backgroundSize: "cover",
-      //   backgroundPosition: "center",
-      //   backgroundRepeat: "no-repeat", // Ensures the background doesn’t repeat
-      //   minHeight: "100vh",
-      //   width: "100%",
-      //   backgroundAttachment: "fixed",
-      //   // overflowX: "hidden",
-      // }}
-      >
-        <HashRouter basename="/">
-          <Navbar />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <Hero />
-                  <br />
-                  {/* <BlogCard /> */}
-                  <HeroBlogSection />
-                  <WorkCard />
-                </>
-              }
-            />
-            <Route
-              path="/work"
-              element={
-                <>
-                  <Hero />
-                  <br />
-                  {/* <BlogCard /> */}
-                  <HeroBlogSection />
-                  <WorkCard />
-                </>
-              }
-            />
-            <Route
-              path="/blog"
-              element={
-                <>
-                  <BlogPage />
-                </>
-              }
-            />
-            <Route
-              path="/add-blog"
-              element={
-                <>
-                  <AddBlog />
-                </>
-              }
-            />
-            <Route
-              path="/blog/:bId"
-              element={
-                <>
-                  <ViewBlog />
-                </>
-              }
-            />
-            <Route
-              path="/edit-blog/:bId"
-              element={
-                <>
-                  <EditBlog />
-                </>
-              }
-            />
-          </Routes>
-        </HashRouter>
-        {/* <Navbar /> */}
-
-        {/* navbar will be out of router and the page content changes */}
-        {/* <div>
-        <AddBlog />
-      </div> */}
-      </Box>
+    <ThemeProvider>
+      <Index />
     </ThemeProvider>
   );
 }

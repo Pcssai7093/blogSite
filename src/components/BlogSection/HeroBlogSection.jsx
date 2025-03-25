@@ -94,7 +94,7 @@ const CartoonCard = styled(Card)(({ theme }) => ({
     // background: "rgba(255, 255, 255, 1)", // Semi-transparent white
   },
 
-  background: "rgba(255, 255, 255, 0.4)",
+  // background: "rgba(255, 255, 255, 0.4)",
   backdropFilter: "blur(10px)", // Blur effect for glassy look
   WebkitBackdropFilter: "blur(10px)",
 }));
@@ -210,9 +210,9 @@ const HeroBlogSection = () => {
               <Slide>
                 <motion.div
                   animate={{
-                    x: [0, 5, -5, 3, -3, 0], // Smooth left-right movement
-                    y: [0, -3, 3, -4, 4, 0], // Smooth up-down movement
-                    rotate: [0, 2, -2, 1.5, -1.5, 0], // Slight rotation for a wavy effect// Small rotations
+                    x: [0, 3, -3, 1, -1, 0], // Smooth left-right movement
+                    y: [0, -1, 1, -2, 2, 0], // Smooth up-down movement
+                    rotate: [0, 1, -1, 1, -1, 0], // Slight rotation for a wavy effect// Small rotations
                   }}
                   transition={{
                     duration: 3, // Speed of movement
@@ -230,7 +230,7 @@ const HeroBlogSection = () => {
                         "&:hover": {
                           transform: "scale(1.05)",
                         },
-                        backgroundColor: "transparent",
+                        // backgroundColor: "transparent",
                         border: "none",
                         boxShadow: "none",
                       }}

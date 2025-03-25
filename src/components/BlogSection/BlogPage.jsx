@@ -72,7 +72,7 @@ const CartoonCard = styled(Card)(({ theme }) => ({
     boxShadow: "8px 8px 0px grey",
   },
 
-  background: "rgba(255, 255, 255, 0.4)", // Semi-transparent white
+  // background: "rgba(255, 255, 255, 0.4)", // Semi-transparent white
   backdropFilter: "blur(10px)", // Blur effect for glassy look
   WebkitBackdropFilter: "blur(10px)",
 }));

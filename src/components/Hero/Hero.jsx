@@ -81,12 +81,12 @@ const Hero = () => {
         <Grid
           item
           xs={12}
-          md={6}
+          md={4}
           sx={{
             display: "flex",
-            justifyContent: { xs: "center", md: "flex-end" },
+            justifyContent: { xs: "center", md: "flex-start" },
             alignItems: "center",
-            order: { xs: 1, md: 2 },
+            order: { xs: 1, md: 1 },
           }}
         >
           <motion.div
@@ -124,7 +124,7 @@ const Hero = () => {
         <Grid
           item
           xs={12}
-          md={6}
+          md={8}
           sx={{
             order: { xs: 2, md: 1 },
             textAlign: { xs: "center", md: "left" },
@@ -176,9 +176,15 @@ const Hero = () => {
                 fontSize: { xs: "1rem", sm: "1rem", md: "1rem" },
               }}
             >
-              A passionate Full Stack Developer with expertise in React,
-              Node.js, and Cloud Technologies. I love creating innovative
-              solutions and bringing ideas to life through code.
+              Full-Stack Web & Mobile Developer Experienced in building scalable
+              microservices, React.js web applications, and android apps with
+              Flutter. Skilled in Node.js, Express.js, MongoDB, SQL, and Elastic
+              DB for robust backend systems, with expertise in Docker, Firebase,
+              and Azure for deployment and cloud solutions. Passionate about
+              creating high-performance, secure, and efficient architectures
+              with clean code and optimized APIs. Leveraging strong
+              problem-solving skills to deliver impactful solutions across web
+              and mobile platforms.
             </Typography>
             <motion.div
               animate={{

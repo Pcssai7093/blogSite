@@ -68,7 +68,7 @@ function Navbar(props) {
             gutterBottom
             sx={{
               fontWeight: 700,
-              background: "linear-gradient(45deg, #b3aeae 30%, #000000 90%)",
+              background: "linear-gradient(45deg, #827b7b 30%, #000000 90%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               WebkitTextStroke: "0.5px black",
@@ -167,7 +167,7 @@ function Navbar(props) {
                         transform: "scale(1.2)",
                       },
                       background:
-                        "linear-gradient(45deg, #fefefe 30%, #000000 90%)",
+                        "linear-gradient(45deg, #bdb5b5 30%, #000000 90%)",
                       WebkitBackgroundClip: "text",
                       WebkitTextFillColor: "transparent",
                       // color: "black",

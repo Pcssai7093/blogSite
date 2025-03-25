@@ -66,7 +66,8 @@ const CartoonCard = styled(Card)(({ theme }) => ({
     // background: "rgba(255, 255, 255, 1)", // Semi-transparent white
   },
 
-  background: "rgba(255, 255, 255, 0.5)",
+  background: "transparent",
+  // border: "none",
   backdropFilter: "blur(10px)", // Blur effect for glassy look
   WebkitBackdropFilter: "blur(10px)",
 }));
@@ -78,16 +79,18 @@ const ViewBlog = () => {
   const [tags, setTags] = useState([]);
   const [blogDate, setBlogDate] = useState("");
   const chipColors = [
-    "#28A745", // Dark Green
-    "#D32F2F", // Strong Red
-    "#6A1B9A", // Deep Purple
-    "#FFAA00", // Deep Orange-Yellow
-    "#007ACC", // Bright Blue
-    "#FF5722", // Vivid Orange
-    "#00897B", // Teal Green
-    "#1976D2", // Dark Blue
-    "#C2185B", // Dark Pink
-    "#795548", // Warm Brown
+    "#6B6B6B", // Dim Grey
+    "#2B2B2B", // Almost Black
+    "#7D7D7D", // Stone Grey
+    "#4A4A4A", // Charcoal Grey
+    "#A6A6A6", // Light Grey
+    "#1C1C1C", // Very Dark Grey
+    "#737373", // Grey
+    "#3A3A3A", // Gunmetal Grey
+    "#5C5C5C", // Medium Dark Grey
+    "#969696", // Smokey Grey
+    "#8C8C8C", // Medium Grey
+    "#2F2F2F", // Dark Grey
   ];
 
   const fadeInVariants = {
@@ -164,10 +167,13 @@ const ViewBlog = () => {
                   <Typography
                     variant="h3"
                     sx={{
-                      color: "white",
+                      fontWeight: 700,
+                      background:
+                        "linear-gradient(45deg, #b3aeae 30%, #2e2727 90%)",
                       WebkitBackgroundClip: "text",
-                      WebkitTextStroke: "0.6px black",
-                      fontSize: { xs: "2rem", sm: "2rem", md: "3rem" },
+                      WebkitTextFillColor: "transparent",
+                      WebkitTextStroke: "0.5px black",
+                      fontFamily: "sketch2",
                     }}
                   >
                     {title && title}
