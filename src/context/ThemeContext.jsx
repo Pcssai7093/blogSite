@@ -16,7 +16,7 @@ export function useThemeContext() {
 
 export function ThemeProvider({ children }) {
   const [mode, setMode] = useState(() => {
-    return localStorage.getItem("themeMode") || "light";
+    return localStorage.getItem("themeMode") || "dark";
   });
 
   const colorMode = useMemo(
