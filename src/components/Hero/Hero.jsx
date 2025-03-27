@@ -176,15 +176,10 @@ const Hero = () => {
                 fontSize: { xs: "1rem", sm: "1rem", md: "1rem" },
               }}
             >
-              Full-Stack Web & Mobile Developer Experienced in building scalable
-              microservices, React.js web applications, and android apps with
-              Flutter. Skilled in Node.js, Express.js, MongoDB, SQL, and Elastic
-              DB for robust backend systems, with expertise in Docker, Firebase,
-              and Azure for deployment and cloud solutions. Passionate about
-              creating high-performance, secure, and efficient architectures
-              with clean code and optimized APIs. Leveraging strong
-              problem-solving skills to deliver impactful solutions across web
-              and mobile platforms.
+              Full-Stack Web & Mobile Developer Experienced in building scalable microservices, React.js web applications, and android
+apps with Flutter. Skilled in Node.js, Express.js, MongoDB, SQL, and Elastic DB for robust backend systems, with expertise
+in Docker, Firebase, and Azure for deployment and cloud solutions. Passionate about architecting efficient systems through
+clean, performant code for web and mobile platforms.
             </Typography>
             <motion.div
               animate={{
