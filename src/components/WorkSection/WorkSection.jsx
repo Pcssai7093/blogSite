@@ -91,12 +91,14 @@ const CartoonCard = styled(Card)(({ theme }) => ({
   padding: "16px",
   fontFamily: "'Comic Sans MS', 'Fredoka One', cursive",
   transition: "transform 0.2s ease, box-shadow 0.2s ease",
-  "&:hover": {
-    transform: "translateY(-4px)",
-    // boxShadow: "8px 8px 0px #21A3F3",
-    // background: "rgba(255, 255, 255, 1)", // Semi-transparent white
-  },
+  // "&:hover": {
+  //   transform: "translateY(-4px)",
+  //   // boxShadow: "8px 8px 0px #21A3F3",
+  //   // background: "rgba(255, 255, 255, 1)", // Semi-transparent white
+  // },
 
+  transform: "translateY(-4px)",
+  boxShadow: "8px 8px 0px grey",
   // background: "rgba(255, 255, 255, 0.5)",
   backdropFilter: "blur(10px)", // Blur effect for glassy look
   WebkitBackdropFilter: "blur(10px)",
@@ -207,7 +209,7 @@ const WorkCard = () => {
                     height: "100%",
                     transition: "transform 0.2s ease",
                     "&:hover": {
-                      transform: "scale(1.05)",
+                      transform: "scale(1.01)",
                     },
                     backgroundColor: "transparent",
                     border: "none",

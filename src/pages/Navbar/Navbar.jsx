@@ -57,10 +57,10 @@ function Navbar(props) {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
+      {/* <Typography variant="h6" sx={{ my: 2 }}>
         Chandra Sekhar
       </Typography>
-      <Divider />
+      <Divider /> */}
       <List>
         {navItems.map((item) => (
           <Typography
@@ -68,7 +68,7 @@ function Navbar(props) {
             gutterBottom
             sx={{
               fontWeight: 700,
-              background: "linear-gradient(45deg, #827b7b 30%, #000000 90%)",
+              background: "linear-gradient(45deg, #fffbfb 30%, #000000 90%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               WebkitTextStroke: "0.5px black",
@@ -77,7 +77,21 @@ function Navbar(props) {
           >
             <ListItem key={item} disablePadding>
               <ListItemButton
-                sx={{ textAlign: "center" }}
+                sx={{
+                      textTransform: "none",
+                      fontWeight: 700,
+                      transition: "transform 0.2s ease",
+                      "&:hover": {
+                        transform: "scale(1.5)",
+                      },
+                      background:
+                        "linear-gradient(45deg, #ffffff 30%, #5f5757 90%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      textAlign:"center"
+                      // color: "black",
+                      // fontSize:"30"
+                    }}
                 onClick={() => {
                   handleNavButtonClick(item);
                 }}
@@ -95,9 +109,9 @@ function Navbar(props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex",width:"100%" }}>
       <CssBaseline />
-      <AppBar
+      <div
         component="nav"
         sx={{
           position: "sticky", // Stays at the top when scrolled past
@@ -105,9 +119,11 @@ function Navbar(props) {
           left: 0,
           bgcolor: "transparent",
           boxShadow: "none",
+          width:"100%"
         }}
       >
-        <Toolbar>
+        <Toolbar
+        sx={{width:"98vw"}}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -132,23 +148,23 @@ function Navbar(props) {
             {/* Chandra Sekhar */}
           </Typography>
           <Box
-            sx={{ display: { xs: "none", sm: "block" }, marginRight: "20px" }}
+            sx={{  marginRight: "20px",display:"flex" ,justifyContent:"end",width:"100%"}}
           >
             {navItems.map((item) => (
               <motion.div
-                animate={{
-                  scale: [1, 1.5, 1], // Zoom in to 1.2x, then back to normal
-                }}
-                transition={{
-                  duration: 1 + Math.random() * 0.5, // Speed of zoom in/out
-                  repeat: Infinity, // Infinite loop
-                  repeatType: "reverse", // Smoothly zoom in & out
-                  ease: "easeInOut",
-                }}
+                // animate={{
+                //   scale: [1, 1.5, 1], // Zoom in to 1.2x, then back to normal
+                // }}
+                // transition={{
+                //   duration: 1 + Math.random() * 0.5, // Speed of zoom in/out
+                //   repeat: Infinity, // Infinite loop
+                //   repeatType: "reverse", // Smoothly zoom in & out
+                //   ease: "easeInOut",
+                // }}
                 style={{ display: "inline-block", marginLeft: "10px" }}
               >
                 <Typography
-                  variant="h6 small"
+                  variant="h5 small"
                   component="div"
                   sx={{
                     flexGrow: 1,
@@ -163,14 +179,16 @@ function Navbar(props) {
                       textTransform: "none",
                       fontWeight: 700,
                       transition: "transform 0.2s ease",
+                      scale:"1.2",
                       "&:hover": {
-                        transform: "scale(1.2)",
+                        transform: "scale(1.5)",
                       },
                       background:
                         "linear-gradient(45deg, #bdb5b5 30%, #000000 90%)",
                       WebkitBackgroundClip: "text",
                       WebkitTextFillColor: "transparent",
                       // color: "black",
+                      // fontSize:"30"
                     }}
                   >
                     {item}
@@ -180,7 +198,7 @@ function Navbar(props) {
             ))}
           </Box>
         </Toolbar>
-      </AppBar>
+      </div>
       <nav>
         <Drawer
           container={container}

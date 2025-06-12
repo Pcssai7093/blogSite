@@ -88,11 +88,14 @@ const CartoonCard = styled(Card)(({ theme }) => ({
   padding: "16px",
   fontFamily: "'Comic Sans MS', 'Fredoka One', cursive",
   transition: "transform 0.2s ease, box-shadow 0.2s ease",
-  "&:hover": {
-    transform: "translateY(-4px)",
-    // boxShadow: "8px 8px 0px #21A3F3",
-    // background: "rgba(255, 255, 255, 1)", // Semi-transparent white
-  },
+  // "&:hover": {
+  //   transform: "translateY(-4px)",
+  //   // boxShadow: "8px 8px 0px #21A3F3",
+  //   // background: "rgba(255, 255, 255, 1)", // Semi-transparent white
+  // },
+
+  transform: "translateY(-4px)",
+  boxShadow: "8px 8px 0px grey",
 
   // background: "rgba(255, 255, 255, 0.4)",
   backdropFilter: "blur(10px)", // Blur effect for glassy look
@@ -209,17 +212,17 @@ const HeroBlogSection = () => {
             <Grid item key={index} xs={12} sm={6} md={6}>
               <Slide>
                 <motion.div
-                  animate={{
-                    x: [0, 3, -3, 1, -1, 0], // Smooth left-right movement
-                    y: [0, -1, 1, -2, 2, 0], // Smooth up-down movement
-                    rotate: [0, 1, -1, 1, -1, 0], // Slight rotation for a wavy effect// Small rotations
-                  }}
-                  transition={{
-                    duration: 3, // Speed of movement
-                    repeat: Infinity, // Infinite loop
-                    repeatType: "mirror",
-                    ease: "easeInOut",
-                  }}
+                  // animate={{
+                  //   x: [0, 3, -3, 1, -1, 0], // Smooth left-right movement
+                  //   y: [0, -1, 1, -2, 2, 0], // Smooth up-down movement
+                  //   rotate: [0, 1, -1, 1, -1, 0], // Slight rotation for a wavy effect// Small rotations
+                  // }}
+                  // transition={{
+                  //   duration: 3, // Speed of movement
+                  //   repeat: Infinity, // Infinite loop
+                  //   repeatType: "mirror",
+                  //   ease: "easeInOut",
+                  // }}
                 >
                   <CartoonCard>
                     <Card
