@@ -98,10 +98,29 @@ const CartoonCard = styled(Card)(({ theme }) => ({
   // },
 
   transform: "translateY(-4px)",
+  border: "1.5px solid black",
   boxShadow: "8px 8px 0px grey",
   // background: "rgba(255, 255, 255, 0.5)",
   backdropFilter: "blur(10px)", // Blur effect for glassy look
   WebkitBackdropFilter: "blur(10px)",
+
+
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    right: -5,
+    width: 50,
+    height: 50,
+    backgroundColor: theme.palette.background.paper, // match the outside background
+    borderLeft: "1.5px solid black",
+    borderBottom: "4.5px solid black",
+    borderRight: "1.5px solid black",
+    transform: "rotate(45deg)",
+    transformOrigin: "top right",
+    zIndex: 1,
+    borderRadius:"0 10px 0px 0px"
+  },
 }));
 
 const WorkCard = () => {

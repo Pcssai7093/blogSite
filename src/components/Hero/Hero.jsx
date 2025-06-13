@@ -6,6 +6,7 @@ import {
   Avatar,
   Container,
   Grid,
+   Card,
   styled,
 } from "@mui/material";
 import Typing from "react-typing-effect";
@@ -32,28 +33,53 @@ const StyledAvatar = styled(Avatar)(({ theme }) => ({
   },
 }));
 
-const StyledButton = styled(Button)(({ theme }) => ({
+const StyledButton = styled(Card)(({ theme }) => ({
   marginTop: theme.spacing(3),
   padding: theme.spacing(1.5, 4),
-  borderRadius: theme.shape.borderRadius,
+  // borderRadius: 0,
+  width:"250px",
   textTransform: "none",
   fontSize: "0.75rem",
   transition: "transform 0.2s ease, background 0.3s ease",
 
   // 🟢 Glassy background with transparency
-  background: "rgba(0, 140, 255, 0.822)", // Semi-transparent blue
+  // background: "rgba(0, 140, 255, 0.822)", // Semi-transparent blue
   backdropFilter: "blur(10px)", // Blur effect
   WebkitBackdropFilter: "blur(10px)",
 
   // 🟢 Subtle frosted glass border
-  border: "1px solid rgba(255, 255, 255, 0.3)",
 
   // 🟢 Soft glow effect
-  boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+  // boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+
+  transform: "translateY(-4px)",
+  // boxShadow: "3px 3px 0px rgba(255, 255, 255, 0.589)",
+  
+
 
   "&:hover": {
-    transform: "translateY(-2px)",
+    transform: "translateY(-4px)",
+  // boxShadow: "3px 3px 0px rgba(255, 255, 255, 0.758)",
   },
+
+  cursor:"pointer",
+
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    right: 0,
+    width: 50,
+    height: 50,
+    backgroundColor: theme.palette.background.paper, // match the outside background
+    borderLeft: "1.5px solid black",
+    borderBottom: "4.5px solid black",
+    borderRight: "1.5px solid black",
+    transform: "rotate(45deg)",
+    transformOrigin: "top right",
+    zIndex: 1,
+  },
+  
 }));
 
 const Hero = () => {
@@ -181,32 +207,23 @@ apps with Flutter. Skilled in Node.js, Express.js, MongoDB, SQL, and Elastic DB 
 in Docker, Firebase, and Azure for deployment and cloud solutions. Passionate about architecting efficient systems through
 clean, performant code for web and mobile platforms.
             </Typography>
-            <motion.div
-              animate={{
-                // Circular jiggle along x and y axes
-                x: [0, 5, 0, -5, 0], // Horizontal movement
-                y: [0, -5, 0, 5, 0], // Vertical movement
-
-                // Zoom In & Zoom Out
-              }}
-              transition={{
-                duration: 2, // Controls the speed of the movement
-                repeat: Infinity, // Infinite loop
-                repeatType: "loop", // Loop the animation
-                ease: "easeInOut", // Smooth transition
-              }}
-            >
+            <motion.div>
               <StyledButton
                 variant="contained"
-                color="primary"
+                // color="primary"
                 startIcon={<FiDownload />}
                 onClick={handleDownload}
                 aria-label="Download Resume"
                 sx={{
                   backgroundColor: "grey",
-                  border: "none",
-                  "&:hover": { backgroundColor: "darkgrey" },
-                }}
+                  border: "1.5px solid black",
+                 margin: {
+                      xs: "0 auto",       // center on extra-small screens
+                      sm: "0 auto",       // center on small
+                      md: "0",            // align left on medium and above
+                    },
+                  
+                }} 
               >
                 <Typography
                   variant="body1"

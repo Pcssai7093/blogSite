@@ -8,7 +8,7 @@ import {
   Box,
   Button,
 } from "@mui/material";
-import { styled } from "@mui/system";
+import { borderRadius, styled } from "@mui/system";
 import { format } from "date-fns";
 import { FaEye } from "react-icons/fa";
 import PropTypes from "prop-types";
@@ -80,27 +80,64 @@ const workExperiences = [
   // Add more experiences as needed
 ];
 
+// const CartoonCard = styled(Card)(({ theme }) => ({
+//   // borderRadius: 7,
+//   // background: "linear-gradient(145deg, #ffea00, #ffcc00)",
+//   // boxShadow: "8px 8px 0px white",
+//   // border: "2px solid #21A3F3",
+//   padding: "16px",
+//   fontFamily: "'Comic Sans MS', 'Fredoka One', cursive",
+//   transition: "transform 0.2s ease, box-shadow 0.2s ease",
+//   // "&:hover": {
+//   //   transform: "translateY(-4px)",
+//   //   // boxShadow: "8px 8px 0px #21A3F3",
+//   //   // background: "rgba(255, 255, 255, 1)", // Semi-transparent white
+//   // },
+//   border: "1.5px solid black",
+
+//   transform: "translateY(-4px)",
+//   boxShadow: "8px 8px 0px grey",
+
+//   // background: "rgba(255, 255, 255, 0.4)",
+//   backdropFilter: "blur(10px)", // Blur effect for glassy look
+//   WebkitBackdropFilter: "blur(10px)",
+  
+// }));
+
 const CartoonCard = styled(Card)(({ theme }) => ({
-  // borderRadius: 7,
-  // background: "linear-gradient(145deg, #ffea00, #ffcc00)",
-  // boxShadow: "8px 8px 0px white",
-  // border: "2px solid #21A3F3",
   padding: "16px",
   fontFamily: "'Comic Sans MS', 'Fredoka One', cursive",
   transition: "transform 0.2s ease, box-shadow 0.2s ease",
-  // "&:hover": {
-  //   transform: "translateY(-4px)",
-  //   // boxShadow: "8px 8px 0px #21A3F3",
-  //   // background: "rgba(255, 255, 255, 1)", // Semi-transparent white
-  // },
-
+  border: "1.5px solid black",
   transform: "translateY(-4px)",
   boxShadow: "8px 8px 0px grey",
-
-  // background: "rgba(255, 255, 255, 0.4)",
-  backdropFilter: "blur(10px)", // Blur effect for glassy look
+  backdropFilter: "blur(10px)",
   WebkitBackdropFilter: "blur(10px)",
+  position: "relative",
+  overflow: "hidden",
+  backgroundColor: theme.palette.background.paper,
+
+  // 👇 Add cut effect using a white triangle overlaid
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    right: -5,
+    width: 50,
+    height: 50,
+    backgroundColor: theme.palette.background.paper, // match the outside background
+    borderLeft: "1.5px solid black",
+    borderBottom: "4.5px solid black",
+    borderRight: "1.5px solid black",
+    transform: "rotate(45deg)",
+    transformOrigin: "top right",
+    zIndex: 1,
+    borderRadius:"0 10px 0px 0px"
+  },
 }));
+
+
+
 
 const CartoonTypography = styled(Typography)({
   fontFamily: "'Comic Sans MS', 'Fredoka One', cursive",

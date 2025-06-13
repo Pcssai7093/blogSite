@@ -41,11 +41,11 @@ export function ThemeProvider({ children }) {
           ...(mode === "light"
             ? {
                 primary: { main: "#1976d2" },
-                background: { default: "#f5f5f5", paper: "#ffffff" },
+                background: { default: "#f5ecec", paper: "#dfd6d6" },
               }
             : {
                 primary: { main: "#90caf9" },
-                background: { default: "#121212", paper: "#1e1e1e" },
+                background: { default: "#403d3d", paper: "#434242" },
               }),
         },
         typography: {

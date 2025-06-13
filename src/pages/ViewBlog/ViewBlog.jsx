@@ -66,10 +66,29 @@ const CartoonCard = styled(Card)(({ theme }) => ({
     // background: "rgba(255, 255, 255, 1)", // Semi-transparent white
   },
 
+  border: "1.5px solid black",
+
   background: "transparent",
   // border: "none",
   backdropFilter: "blur(10px)", // Blur effect for glassy look
   WebkitBackdropFilter: "blur(10px)",
+
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    right: -5,
+    width: 50,
+    height: 50,
+    backgroundColor: theme.palette.background.paper, // match the outside background
+    borderLeft: "1.5px solid black",
+    borderBottom: "4.5px solid black",
+    borderRight: "1.5px solid black",
+    transform: "rotate(45deg)",
+    transformOrigin: "top right",
+    zIndex: 1,
+    borderRadius:"0 10px 0px 0px"
+  },
 }));
 
 const ViewBlog = () => {
