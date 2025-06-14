@@ -25,7 +25,7 @@ import {
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
   width: 250,
   height: 250,
-  border: `4px solid ${theme.palette.primary.main}`,
+  border: `5.5px double ${theme.palette.background.paper}`,
   boxShadow: theme.shadows[4],
   transition: "transform 0.3s ease-in-out",
   "&:hover": {
@@ -52,7 +52,7 @@ const StyledButton = styled(Card)(({ theme }) => ({
   // 🟢 Soft glow effect
   // boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
 
-  transform: "translateY(-4px)",
+  // transform: "translateY(-4px)",
   // boxShadow: "3px 3px 0px rgba(255, 255, 255, 0.589)",
   
 
@@ -61,6 +61,10 @@ const StyledButton = styled(Card)(({ theme }) => ({
     transform: "translateY(-4px)",
   // boxShadow: "3px 3px 0px rgba(255, 255, 255, 0.758)",
   },
+
+  transform: "translateY(-2px)",
+  boxShadow: `4px 4px 0px ${theme.palette.background.anti}`,
+  // borderRadius:0,
 
   cursor:"pointer",
 
@@ -142,7 +146,7 @@ const Hero = () => {
                 alt="John Doe Profile Picture"
                 src={`${import.meta.env.BASE_URL}profile_army_crop2.JPG`}
                 loading="lazy"
-                sx={{ border: "5px solid grey", filter: "grayscale(100%)" }}
+                sx={{  filter: "grayscale(100%)" }}
               />
             </Box>
           </motion.div>
