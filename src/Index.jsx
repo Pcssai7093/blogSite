@@ -115,7 +115,7 @@ function Index() {
               <IconButton
                 // color="primary"
                 component="a"
-                href="https://www.linkedin.com/in/your-profile"
+                href="https://www.linkedin.com/in/chandrasekharpotti/"
                 target="_blank"
                 rel="noopener"
                 sx={{
@@ -128,7 +128,7 @@ function Index() {
               <IconButton
                 // color="primary"
                 component="a"
-                href="https://www.linkedin.com/in/your-profile"
+                href="https://github.com/Pcssai7093"
                 target="_blank"
                 rel="noopener"
                 sx={{
