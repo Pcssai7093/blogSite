@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, IconButton, useTheme ,alpha} from "@mui/material";
+import { Box, IconButton, useTheme ,alpha, useMediaQuery } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Rotate } from "react-awesome-reveal";
 import useSectionObserver from "./useSectionObserver";
@@ -13,6 +13,9 @@ function FloatingNavbar() {
   const sectionIds = ["about_section", "work_section", "blogs_section"];
 
   const activeSection  = useSectionObserver(sectionIds);
+
+  const isXs = useMediaQuery(theme.breakpoints.down("sm"));
+  const realActiveSection = isXs ? "all" : activeSection;
 
   const scrollToSection = (id) => {
     document
@@ -40,6 +43,9 @@ function FloatingNavbar() {
   }
 
   function isActive(item){
+    if(realActiveSection == "all"){
+      return true;
+    }
     let itemString = new String(item)
     itemString = itemString.toLowerCase()
     if(activeSection.includes(itemString)){
@@ -68,7 +74,7 @@ function FloatingNavbar() {
           // borderBottom:`5px double ${theme.palette.background.anti}`
 
 
-          ...(activeSection!='about_section'?
+          ...((activeSection!='about_section') || (realActiveSection == "all")?
             {
               backgroundColor:alpha(theme.palette.background.anti, 1),
             }:
@@ -91,7 +97,7 @@ function FloatingNavbar() {
           // opacity:"0.5",
           // border:`2px solid ${theme.palette.background.anti}`,
           borderRadius:"5px",
-          ...(activeSection!='about_section'?
+          ...((activeSection!='about_section') || (realActiveSection == "all")?
             {
               color:theme.palette.background.default,
             }:
@@ -110,7 +116,7 @@ function FloatingNavbar() {
             transform: "translateY(-2px)",
             padding:"5px",
             ...(isActive(item)?
-            { boxShadow: `4px 4px 0px ${activeSection!='about_section' ? theme.palette.background.default : theme.palette.background.anti}`,
+            { boxShadow: `4px 4px 0px ${((activeSection!='about_section') || (realActiveSection == "all")) ? theme.palette.background.default : theme.palette.background.anti}`,
             backgroundColor: "grey",}:
             {})
           }
