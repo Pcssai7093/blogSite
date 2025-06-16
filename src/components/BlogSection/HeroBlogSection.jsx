@@ -27,6 +27,7 @@ import {
   limit,
   query,
 } from "firebase/firestore";
+import ModelBlog from "../../pages/ViewBlog/ModelBlog";
 
 const CategoryContainer = styled(Box)({
   display: "flex",
@@ -147,6 +148,9 @@ const CartoonTypography = styled(Typography)({
 });
 
 const HeroBlogSection = () => {
+  const [open, setOpen] = useState(false);
+  const [selectedBlogId, setSelectedBlogId] = useState("");
+
   const chipColors = [
     "#6B6B6B", // Dim Grey
     "#2B2B2B", // Almost Black
@@ -186,7 +190,7 @@ const HeroBlogSection = () => {
   }, []);
 
   return (
-    <Container maxWidth="md" sx={{ py: 4 }}>
+    <Container maxWidth="md" sx={{ py: 4 }} id="blogs_section">
       <Typography
         variant="h3"
         gutterBottom
@@ -201,7 +205,7 @@ const HeroBlogSection = () => {
           letterSpacing: "0.02rem",
         }}
       >
-        {"Recent".split("").map((letter, index) => (
+        {/* {"Recent".split("").map((letter, index) => (
           <Box
             key={index}
             component="span"
@@ -220,7 +224,7 @@ const HeroBlogSection = () => {
           >
             {letter}
           </Box>
-        ))}
+        ))} */}
         <Box sx={{ display: "inline-flex", width: "5px" }} />
         {"Blogs".split("").map((letter, index) => (
           <Box
@@ -276,7 +280,11 @@ const HeroBlogSection = () => {
                       }}
                     >
                       <IconButton
-                        onClick={() => navigate(`/blog/${work.id}`)}
+                        onClick={() => {
+                          // navigate(`/blog/${work.id}`)
+                          setSelectedBlogId(work.id)
+                          setOpen(true)
+                        }}
                         aria-label="View Blog"
                       >
                         <LinkIcon />
@@ -331,6 +339,11 @@ const HeroBlogSection = () => {
             </Grid>
           ))}
       </Grid>
+      <ModelBlog
+        open={open}
+        onClose={() => setOpen(false)}
+        bId={selectedBlogId}
+      />
     </Container>
   );
 };

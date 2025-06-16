@@ -20,6 +20,7 @@ import { useThemeContext } from "./context/ThemeContext";
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { useTheme } from '@mui/material/styles';
+import FloatingNavbar from "./components/FloatingNavbar";
 
 function Index() {
   const { mode, toggleColorMode } = useThemeContext();
@@ -30,11 +31,13 @@ function Index() {
          sx={{
           transition: 'background 0.6s ease-in-out', // Smooth transition
           backgroundColor: theme.palette.background.default,
+          color:theme.palette.background.anti,
         }}
         
       >
         <HashRouter basename="/">
-          <Navbar />
+          {/* <Navbar /> */}
+          <FloatingNavbar/>
           <Routes>
             <Route
               path="/"
@@ -43,8 +46,20 @@ function Index() {
                   <Hero />
                   <br />
                   {/* <BlogCard /> */}
-                  <HeroBlogSection />
                   <WorkCard />
+                  <HeroBlogSection />
+                </>
+              }
+            />
+            <Route
+              path="/about"
+              element={
+                <>
+                  <Hero />
+                  <br />
+                  {/* <BlogCard /> */}
+                  <WorkCard />
+                  <HeroBlogSection />
                 </>
               }
             />
@@ -52,11 +67,8 @@ function Index() {
               path="/work"
               element={
                 <>
-                  <Hero />
-                  <br />
-                  {/* <BlogCard /> */}
-                  <HeroBlogSection />
                   <WorkCard />
+                  {/* <BlogPage /> */}
                 </>
               }
             />

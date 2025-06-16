@@ -99,11 +99,13 @@ const Hero = () => {
   return (
     <Container
       maxWidth="md"
+      id="about_section"
       sx={{
         // marginTop: "5vh",
         py: 1,
         display: "flex",
         alignItems: "center",
+        paddingTop:"100px",
         // paddingLeft: "10vw",
       }}
     >
